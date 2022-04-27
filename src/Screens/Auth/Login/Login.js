@@ -8,11 +8,19 @@ import colors from "../../../styles/colors";
 import TextInputWithLable from "../../../Components/TextInputWithLable";
 import CountryPicker, {Flag} from 'react-native-country-picker-modal'
 import { TouchableOpacity } from "react-native-gesture-handler";
+import imagePath from "../../../constants/imagePath";
 
 const Login = () => {
   const [countryCode, setCountryCode] = useState('+91')
   const [countryFlag, setCountryFlag] = useState('IN')
   const [isCountrySelected, setCountrySelected] = useState(true)
+  const [isVisible, setIsVisible] = useState()
+  const [userData, setUserData] = useState({
+      phone: '',
+      password: ''
+  })
+
+  const {phone, password} = userData
 
   const onSelect = (country) =>{
     console.log("country", country)
@@ -34,14 +42,25 @@ const Login = () => {
         
         
        { isCountrySelected && <CountryPicker onSelect={onSelect} />}
-       <TouchableOpacity onPress={()=>setCountrySelected(true)}>
          <View style={styles.countryCodePicker}>
-          <Flag countryCode={countryFlag}/>
-          <Text> + {countryCode}</Text>
-          </View>
+       <TouchableOpacity onPress={()=>setCountrySelected(true)} style={{flexDirection:'row', alignItems:'center'}}>
+          <Flag countryCode={countryFlag} flagSize={15} />
+          <Text style={{color:colors.white, marginRight:moderateScale(4)}}> + {countryCode}</Text>
+          <Image source={imagePath.downArrow}/>
        </TouchableOpacity>
-        <TextInputWithLable placeholder={strings.MOBILE_NUMBER} inputStyle={{flex:0.7}}/>
+          </View>
+       <View style={{flex:0.05}}/>
+        <TextInputWithLable placeholder={strings.MOBILE_NUMBER} inputStyle={{flex:0.65}}/>
         </View>
+        <TextInputWithLable
+                        placeholder={strings.ENTER_YOUR_PASSWORD}
+                        label={strings.PASSWORD}
+                        value={password}
+                        secureTextEntry={isVisible}
+                        rightIcon={isVisible ? imagePath.hideEye : imagePath.showEye}
+                        onPressRight={() => setIsVisible(!isVisible)}
+                        onChangeText={(text) => updateState({ password: text })}
+                    />
       </View>
       </View>
     </WrapperContainer>
@@ -63,7 +82,8 @@ const styles = StyleSheet.create({
     marginTop:moderateScaleVertical(6)
   },
   countryCodePicker:{
-    // flex:0.3,
+    flex:0.3,
+    alignItems:'center',
     paddingVertical:moderateScaleVertical(15),
     borderRadius:moderateScale(8),
     flexDirection:'row',
