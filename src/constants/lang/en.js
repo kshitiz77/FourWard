@@ -1,0 +1,22 @@
+export default{
+    PRIVACY_POLICY_TEXT:'By clicking “Log In”, you agree with our Terms. Learn how we process your data in our Privacy policy.',
+    LOGIN_IN_WITH_PHONE_NUMBER:"Log In with Phone number",
+    OR:'or',
+    LOG_IN_WITH_GOOGLE:'Log In with Google',
+    LOG_IN_WITH_FACEBOOK:'Log In with Facebook',
+    LOGIN_IN_WITH_APPLE:'Log In with Apple',
+    NEW_HERE:'New here?',
+    SIGN_UP:'Sign Up',
+    INTRO_TITLE_1:'Hendrerit vulputate sem',
+    INTRO_TITLE_2:'Hendrerit vulputate sem',
+    INTRO_TITLE_3:'Hendrerit vulputate sem',
+    INTRO_TEXT_1:'Aenean et convallis nulla. Donec in efficitur nisi, et vestibulum quam aenean.',
+    INTRO_TEXT_2:'Aenean et convallis nulla. Donec in efficitur nisi, et vestibulum quam aenean.',
+    INTRO_TEXT_3:'Aenean et convallis nulla. Donec in efficitur nisi, et vestibulum quam aenean.',
+    GET_STARTED:'Get started',
+    WELCOME_BACK:'Welcome back!',
+    WELCOME_TEXT:'We are happy to see. You can login to continue.',
+    MOBILE_NUMBER:'Mobile number',
+    IN:'IN',
+    INDIA_COUNTRY_:''
+}

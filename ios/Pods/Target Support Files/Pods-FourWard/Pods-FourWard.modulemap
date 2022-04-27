@@ -1,0 +1,6 @@
+module Pods_FourWard {
+  umbrella header "Pods-FourWard-umbrella.h"
+
+  export *
+  module * { export * }
+}
