@@ -8,7 +8,7 @@ const TextInputWithLable = ({
     placeholder,
     onChangeText = () => { },
     inputStyle = {},
-    rightIcon,
+    rightText,
     onPressRight,
     ...props
 }) => {
@@ -22,12 +22,9 @@ const TextInputWithLable = ({
                     onChangeText={onChangeText}
                     {...props}
                 />
-                {rightIcon ? 
+                {rightText ? 
                 <TouchableOpacity onPress={onPressRight} activeOpacity={0.5}>
-                    <Image 
-                    style={{ tintColor: colors.grayA }}
-                    source={rightIcon} 
-                    />
+                    <Text style={{color:colors.white, marginRight:moderateScale(16)}}>{rightText}</Text>
                 </TouchableOpacity>
                 : null
                 }

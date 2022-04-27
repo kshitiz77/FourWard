@@ -18,5 +18,5 @@ export default{
     WELCOME_TEXT:'We are happy to see. You can login to continue.',
     MOBILE_NUMBER:'Mobile number',
     IN:'IN',
-    INDIA_COUNTRY_:''
+    PASSWORD:'Password'
 }
