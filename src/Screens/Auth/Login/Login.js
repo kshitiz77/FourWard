@@ -20,6 +20,8 @@ const Login = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [countryFlag, setCountryFlag] = useState("IN");
   const [isCountrySelected, setCountrySelected] = useState(true);
+  const [isCountryPicker, setCountryPicker] = useState(false);
+
   const [isVisible, setIsVisible] = useState();
   const [userData, setUserData] = useState({
     phone: "",
@@ -46,10 +48,18 @@ const Login = () => {
         </View>
         <View style={{ marginTop: moderateScaleVertical(32) }}>
           <View style={{ flexDirection: "row" }}>
-            {isCountrySelected && <CountryPicker onSelect={onSelect} />}
-            <View style={styles.countryCodePicker}>
+            {/* {isCountrySelected && <CountryPicker visible={isCountryPicker} onSelect={onSelect} />} */}
+            <CountryPicker 
+            onSelect={onSelect}
+            visible={false}
+            countryCode={countryFlag}
+            withCallingCode={true}
+            withCallingCodeButton={countryCode}
+            />
+            {/* <View style={styles.countryCodePicker}>
+            
               <TouchableOpacity
-                onPress={() => setCountrySelected(true)}
+                onPress={() => setCountryPicker(true)}
                 style={{ flexDirection: "row", alignItems: "center" }}
               >
                 <Flag countryCode={countryFlag} flagSize={15} />
@@ -61,7 +71,7 @@ const Login = () => {
                 </Text>
                 <Image source={imagePath.downArrow} />
               </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={{ flex: 0.05 }} />
             <TextInputWithLable
               onChangeText={(text) => updateState({ phone: text })}
