@@ -7,5 +7,6 @@ export default {
   linkBlue: "#41CCFF",
   mediumDarkGray : '#4C4C4C',
   textGray: '#999999',
-  linkSkyBlue:'#32C5FF'
+  linkSkyBlue: '#32C5FF',
+  textDarkGray: '#B8B8B8'
 };

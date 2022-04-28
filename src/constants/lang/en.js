@@ -22,4 +22,17 @@ export default{
     USE_OTP:'Use OTP',
     FORGOT_PASSWORD:'Forgot password?',
     LOGIN:'Login',
+    CREATE_NEW_ACCOUNT:'Create new account',
+    CREATE_NEW_ACCOUNT_TEXT:'Create an account so you can continue.',
+    NEXT:'Next',
+    EMAIL:'Email',
+    FIRST_NAME:"First name",
+    LAST_NAME:'Last name',
+    VERIFY:'Verify',
+    ENTER_VERIFY_CODE_TEXT:'Enter the 4-digit code sent to you at',
+    EDIT_MY_MOBILE_NUMBER:'Edit my mobile number',
+    RESEND_CODE:'Resend code in ',
+    CONFIRM_PASSWORD:'Confirm password',
+    SET_PASSWORD:'Set password',
+    SET_PASSWORD_TEXT:'Create secure and unique password.'
 }

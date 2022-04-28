@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, Platform } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
+} from "react-native";
 import React, { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CountryCodePicker from "../../../Components/CountryCodePicker";
@@ -16,28 +24,43 @@ import strings from "../../../constants/lang";
 import colors from "../../../styles/colors";
 import TextInputWithLable from "../../../Components/TextInputWithLable";
 import imagePath from "../../../constants/imagePath";
+import navigationStrings from "../../../navigation/navigationStrings";
+import actions from "../../../redux/actions";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState();
   const [userData, setUserData] = useState({
     phone: "",
     password: "",
   });
-
+  const [countryCode, setCountryCode] = useState("91");
+  const [countryFlag, setCountryFlag] = useState("IN");
   const { phone, password } = userData;
   const updateState = (data) =>
     setUserData((userData) => ({ ...userData, ...data }));
 
-  const onSelect = (country) => {
-    console.log("country", country);
-    console.log("country.cca2", country.cca2);
-    setCountryFlag(country.cca2);
-    setCountryCode(country.callingCode[0]);
-    setCountrySelected(false);
-  };
+    const handleSubmitBtn = async () => {
+      let apiData = {
+          phone: phone,
+          phone_code: countryCode,
+          device_token: 'KDKFJDKFDFKDFDF',
+          device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
+          password: password,
+          loginType: 'admin'
+      }
+      try {
+          const res = await actions.login(apiData)
+          console.log("Login api res_+++++",res)
+          // alert("User Login successfully....!!!")
+      } catch (error) {
+          console.log("error raised", error)
+          alert(error?.message)
+      }
+  }
+
   return (
     <WrapperContainer>
-        <View style={styles.container}>
+      <View style={styles.container}>
         <View>
           <HeaderComp />
           <View style={{ marginTop: moderateScaleVertical(6) }}>
@@ -46,7 +69,12 @@ const Login = () => {
           </View>
           <View style={{ marginTop: moderateScaleVertical(32) }}>
             <View style={{ flexDirection: "row" }}>
-              <CountryCodePicker />
+              <CountryCodePicker
+                countryCode={countryCode}
+                countryFlag={countryFlag}
+                setCountryCode={setCountryCode}
+                setCountryFlag={setCountryFlag}
+              />
               <View style={{ flex: 0.05 }} />
               <TextInputWithLable
                 onChangeText={(text) => updateState({ phone: text })}
@@ -63,34 +91,42 @@ const Login = () => {
               secureTextEntry={isVisible}
               rightText={isVisible ? "Show" : "Hide"}
               onPressRight={() => setIsVisible(!isVisible)}
-              
               onChangeText={(text) => updateState({ password: text })}
             />
           </View>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(navigationStrings.OTP)}
+            >
               <Text style={{ color: colors.white }}>{strings.USE_OTP}</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(navigationStrings.CHANGE_PASSWORD)
+              }
+            >
               <Text style={{ color: colors.linkSkyBlue }}>
                 {strings.FORGOT_PASSWORD}
               </Text>
             </TouchableOpacity>
           </View>
         </View>
-        <KeyboardAwareScrollView
-        behavior={Platform.OS =='android'? 'height': 'padding'}
-        contentContainerStyle={{marginVertical:moderateScaleVertical(48)}}
-      >
-          <ButtonComp
-            btnText={strings.LOGIN}
-            btnStyle={{ backgroundColor: colors.btnOrange }}
-            btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
-          />
-      </KeyboardAwareScrollView>
-        </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "android" ? "height" : "padding"}
+          contentContainerStyle={{}}
+        >
+          <View style={{ marginBottom: moderateScaleVertical(56) }}>
+            <ButtonComp
+              btnText={strings.LOGIN}
+              btnStyle={{ backgroundColor: colors.btnOrange }}
+              onPress={handleSubmitBtn}
+              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+            />
+          </View>
+        </KeyboardAvoidingView>
+      </View>
     </WrapperContainer>
   );
 };
@@ -100,6 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     marginHorizontal: moderateScale(24),
+    // backgroundColor:'red'
   },
   welcomeBackStyle: {
     fontSize: textScale(24),

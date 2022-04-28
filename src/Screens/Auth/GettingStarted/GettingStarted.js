@@ -49,7 +49,7 @@ const GettingStarted = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.bottomView}
-          onPress={() => navigation.navigate(navigationStrings.SIGNUP)}
+          onPress={() => navigation.navigate(navigationStrings.SIGNUP)} 
         >
           <Text style={styles.newHereText}>{strings.NEW_HERE} </Text>
           <Text style={styles.signupBtnStyle}>{strings.SIGN_UP}</Text>

@@ -5,24 +5,19 @@ import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import { moderateScale , moderateScaleVertical, width } from '../styles/responsiveSize';
 
-const CountryCodePicker = () => {
-    const [countryCode, setCountryCode] = useState('91');
-    const [countryFlag, setCountryFlag] = useState('IN');
-  
+const CountryCodePicker = ({
+  setCountryCode,
+  setCountryFlag,
+  countryFlag,
+  countryCode
+}) => {
     const onSelect = country => {
       setCountryFlag(country.cca2);
       setCountryCode(country.callingCode[0]);
     };
   return (
     <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: colors.mediumDarkGray,
-                borderRadius: moderateScale(10),
-                paddingHorizontal:moderateScale(5),
-                flex: 0.32,
-              }}>
+              style={styles.container}>
               <CountryPicker
                 onSelect={onSelect}
                 visible={false}
@@ -45,5 +40,15 @@ const CountryCodePicker = () => {
             </View>
   )
 }
+const styles = StyleSheet.create({
+  container:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.mediumDarkGray,
+    borderRadius: moderateScale(10),
+    paddingHorizontal:moderateScale(5),
+    flex: 0.32,
+  }
+})
 
 export default CountryCodePicker

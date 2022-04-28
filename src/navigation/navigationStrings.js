@@ -12,5 +12,5 @@ export default{
     NOTIFICATION: 'Notification',
     EDIT_PROFILE: 'EditProfile',
     PROFILE: 'Profile',
-    CHANGE_PASSWORD: 'ChangePassword'
+    CHANGE_PASSWORD: 'ChangePassword',
 }

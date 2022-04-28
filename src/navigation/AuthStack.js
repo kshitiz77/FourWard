@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { GettingStarted, ChangePassword, Login, Otp, SetPassword, Signup, Intro } from '../Screens'
+import { GettingStarted, ChangePassword, Login, Otp, SetPassword, Signup, Intro,  } from '../Screens'
 import navigationStrings from './navigationStrings'
 
 const AuthStack = (Stack) => {
