@@ -18,5 +18,8 @@ export default{
     WELCOME_TEXT:'We are happy to see. You can login to continue.',
     MOBILE_NUMBER:'Mobile number',
     IN:'IN',
-    PASSWORD:'Password'
+    PASSWORD:'Password',
+    USE_OTP:'Use OTP',
+    FORGOT_PASSWORD:'Forgot password?',
+    LOGIN:'Login',
 }

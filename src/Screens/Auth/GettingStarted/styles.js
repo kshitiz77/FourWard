@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
   },
   btnContainer: {
     flex: 0.6,
+    marginVertical:moderateScaleVertical(24),
     marginHorizontal: moderateScale(24),
   },
   privacyPolicyText: {
