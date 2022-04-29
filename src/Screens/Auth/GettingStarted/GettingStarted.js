@@ -6,6 +6,7 @@ import { styles } from "./styles";
 import strings from "../../../constants/lang";
 import ButtonComp from "../../../Components/ButtonComp";
 import navigationStrings from "../../../navigation/navigationStrings";
+import { removeUserData } from "../../../utils/utils";
 
 const GettingStarted = ({ navigation }) => {
   return (

@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import WrapperContainer from "../../../Components/WrapperContainer";
-import navigationStrings from "../../../navigation/navigationStrings"
+import navigationStrings from "../../../navigation/navigationStrings";
 import strings from "../../../constants/lang";
 import colors from "../../../styles/colors";
 import HeaderComp from "../../../Components/HeaderComp";
@@ -15,43 +15,53 @@ import ButtonComp from "../../../Components/ButtonComp";
 import {
   moderateScale,
   moderateScaleVertical,
-  textScale
+  textScale,
 } from "../../../styles/responsiveSize";
 import TextInputWithLable from "../../../Components/TextInputWithLable";
-import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
+import SmoothPinCodeInput from "react-native-smooth-pincode-input";
 
-const Otp = ({navigation, route}) => {
-  const [code, setCode] = useState()
-  const apiData = route?.params?.data
-  console.log(apiData)
+const Otp = ({ navigation, route }) => {
+  const [code, setCode] = useState();
+  const apiData = route?.params?.data;
+  console.log(apiData);
   return (
     <WrapperContainer>
       <View style={styles.container}>
         <View>
           <HeaderComp />
           <View style={{ marginTop: moderateScaleVertical(6) }}>
-            <Text style={styles.welcomeBackStyle}>{strings.ENTER_VERIFY_CODE_TEXT} +{apiData?.country_code} {apiData?.phone}</Text>
-            <Text style={styles.welcomeTextStyle}>{strings.EDIT_MY_MOBILE_NUMBER}</Text>
+            <Text style={styles.welcomeBackStyle}>
+              {strings.ENTER_VERIFY_CODE_TEXT} +{apiData?.country_code}{" "}
+              {apiData?.phone}
+            </Text>
+            <Text style={styles.welcomeTextStyle}>
+              {strings.EDIT_MY_MOBILE_NUMBER}
+            </Text>
           </View>
-          <View style={{flexDirection:'row', marginVertical:moderateScaleVertical(32)}}>
+          <View
+            style={{
+              flexDirection: "row",
+              marginVertical: moderateScaleVertical(32),
+            }}
+          >
             <SmoothPinCodeInput
-            // ref={this.pinInput}
-            cellStyle={{
-              color:"white",
-              backgroundColor: colors.mediumDarkGray,
-              borderRadius:moderateScale(8)
-            }}
-            textStyle={{
-              fontSize: textScale(14),
-              color: colors.white
-            }}
-            value={code}
-            onTextChange={code => setCode( code )}
-            // onFulfill={this._checkCode}
-            onBackspace={() => console.log('No more back.')}
+              // ref={this.pinInput}
+              cellStyle={{
+                color: "white",
+                backgroundColor: colors.mediumDarkGray,
+                borderRadius: moderateScale(8),
+              }}
+              textStyle={{
+                fontSize: textScale(14),
+                color: colors.white,
+              }}
+              value={code}
+              onTextChange={(code) => setCode(code)}
+              // onFulfill={this._checkCode}
+              onBackspace={() => console.log("No more back.")}
             />
           </View>
-        </View> 
+        </View>
         <KeyboardAvoidingView
           behavior={Platform.OS === "android" ? "height" : "padding"}
           contentContainerStyle={{}}
@@ -62,7 +72,9 @@ const Otp = ({navigation, route}) => {
               btnText={strings.VERIFY}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
-              onPress={() => navigation.navigate(navigationStrings.SET_PASSWORD)}
+              onPress={() =>
+                navigation.navigate(navigationStrings.SET_PASSWORD)
+              }
             />
           </View>
         </KeyboardAvoidingView>
@@ -86,10 +98,10 @@ const styles = StyleSheet.create({
     color: colors.linkBlue,
     marginTop: moderateScaleVertical(8),
   },
-  belowTextStyle:{
-    marginBottom:moderateScaleVertical(24),
-    fontSize:textScale(15),
-    color:colors.white
-  }
+  belowTextStyle: {
+    marginBottom: moderateScaleVertical(24),
+    fontSize: textScale(15),
+    color: colors.white,
+  },
 });
 export default Otp;

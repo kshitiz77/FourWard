@@ -7,6 +7,7 @@ import colors from "../../../styles/colors";
 import WrapperContainer from "../../../Components/WrapperContainer";
 import strings from "../../../constants/lang";
 import navigationStrings from "../../../navigation/navigationStrings";
+import actions from "../../../redux/actions";
 
 const introSlides = [
   {
@@ -52,7 +53,7 @@ const Intro = ({navigation}) => {
 
   const _renderDoneButton = () => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.GettingStarted)}>
+      <TouchableOpacity onPress={() => actions.intro(false)}>
         <Text style={styles.getStartedText}>{strings.GET_STARTED}</Text>
       </TouchableOpacity>
     );

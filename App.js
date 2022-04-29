@@ -10,12 +10,18 @@ import { Provider } from 'react-redux'
 const App = () => {
 
   useEffect(() => {
-    getUserData().then((res) => {
+    getUserData('userIntro').then((res) => {
+      console.log("intro data", res)
+        actions.intro(res)
+    })
+
+    getUserData('userData').then((res) => {
       console.log("store data", res)
       if(!!res){
         actions.saveUserData(res)
       }
     })
+    
   }, [])
   return (
     <>

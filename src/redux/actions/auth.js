@@ -37,3 +37,10 @@ export const logout = (data) =>{
 export const signup = (data) =>{
     return apiPost(SIGNUP, data);
 }
+
+export const intro = (data) =>{
+  dispatch({
+    type: types.INTRO,
+    payload: data
+  })
+}

@@ -117,9 +117,9 @@ export const removeUserData = async (key) => {
 }
 
 // get user details function
-export const getUserData = async () => {
+export const getUserData = async (key) => {
   try {
-    const userData = await AsyncStorage.getItem('userData')
+    const userData = await AsyncStorage.getItem(key)
     return userData != null ? JSON.parse(userData) : null;
   } catch (e) {
     console.log("user_data get error")
