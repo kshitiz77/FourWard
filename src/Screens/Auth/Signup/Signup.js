@@ -38,34 +38,33 @@ export default function Signup({ navigation }) {
     setUserData((userData) => ({ ...userData, ...data }));
 
   const _onSubmitSignUpData = async () => {
-  //   if(password === confirmPassword){
-  //   let apiData = {
-  //     first_name: firstName,
-  //     last_name: lastName,
-  //     email: email,
-  //     phone: phone,
-  //     phone_code: "",
-  //     country_code: countryCode,
-  //     device_token: "KDKFJDKFDFKDFDF",
-  //     device_type: Platform.OS == "ios" ? "IOS" : "ANDROID",
-  //     password: password,
-  //   };
-  //   console.log(apiData);
-  //   try {
-  //     const res = await actions.signup(apiData);
-  //     console.log("singnup api res_+++++", res);
-  //     alert("User signup successfully....!!!");
-  //     if (!!res) {
-  //       navigation.navigate(navigationStrings.OTP, { data: res.data });
-  //     }
-  //   } catch (error) {
-  //     console.log("error raised", error);
-  //     alert(error?.message);
-  //   }
-  // }else{
-  //   alert("Please Enter Correct Password");
-  // }
-  navigation.navigate(navigationStrings.OTP);
+    if(password === confirmPassword){
+    let apiData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone: phone,
+      phone_code: "",
+      country_code: countryCode,
+      device_token: "KDKFJDKFDFKDFDF",
+      device_type: Platform.OS == "ios" ? "IOS" : "ANDROID",
+      password: password,
+    };
+    console.log(apiData);
+    try {
+      const res = await actions.signup(apiData);
+      console.log("singnup api res_+++++", res);
+      alert("User signup successfully....!!!");
+      if (!!res) {
+        navigation.navigate(navigationStrings.OTP, { data: res.data });
+      }
+    } catch (error) {
+      console.log("error raised", error);
+      alert(error?.message);
+    }
+  }else{
+    alert("Please Enter Correct Password");
+  }
   };
   return (
     <WrapperContainer>

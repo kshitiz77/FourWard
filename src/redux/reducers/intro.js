@@ -1,15 +1,19 @@
 import types from "../types";
-import { setUserData } from "../../utils/utils";
-const initialState = true
-
+import { setItem } from "../../utils/utils";
+const initialState = {
+  appIntroData: true,
+};
 
 const introReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.INTRO:
-        const data = action.payload
+      const data = action.payload;
       console.log("introData", action.payload);
-      setUserData("userIntro", data);
-      return state = data;
+      setItem("appIntroData", data);
+      return {
+        ...state.appIntroData,
+        appIntroData: data,
+      };
 
     default:
       return state;

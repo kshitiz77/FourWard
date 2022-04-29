@@ -1,10 +1,10 @@
-import userStatus from "./auth";
+import userData from "./auth";
 import introReducer from "./intro";
 
 import { combineReducers } from "redux";
 
 const rootReducers = combineReducers({
-    userStatus,
+    userData,
     introReducer
 })
 

@@ -7,6 +7,7 @@ import strings from "../../../constants/lang";
 import ButtonComp from "../../../Components/ButtonComp";
 import navigationStrings from "../../../navigation/navigationStrings";
 import { removeUserData } from "../../../utils/utils";
+import actions from "../../../redux/actions";
 
 const GettingStarted = ({ navigation }) => {
   return (
@@ -39,6 +40,7 @@ const GettingStarted = ({ navigation }) => {
             btnText={strings.LOG_IN_WITH_FACEBOOK}
             image={imagePath.facebookLogo}
             rightBtnImg={true}
+            onPress={() => actions.intro(true)}
           />
           <ButtonComp
             btnStyle={styles.socialLoginBtn}

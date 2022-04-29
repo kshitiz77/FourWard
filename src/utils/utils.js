@@ -107,6 +107,26 @@ export const setUserData = (key, data) => {
   return AsyncStorage.setItem(key, data);
 }
 
+
+export const setItem = (key, data) => {
+	console.log(data)
+	data = JSON.stringify(data);
+	return AsyncStorage.setItem(key, data);
+  }
+
+
+  export function getItem(key) {
+	return new Promise((resolve, reject) => {
+	  AsyncStorage.getItem(key).then(data => {
+		resolve(JSON.parse(data));
+	  });
+	});
+  }
+  
+
+
+
+
 // remove user details function
 export const removeUserData = async (key) => {
   try {

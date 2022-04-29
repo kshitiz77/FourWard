@@ -31,7 +31,7 @@ const Otp = ({ navigation, route }) => {
           <HeaderComp />
           <View style={{ marginTop: moderateScaleVertical(6) }}>
             <Text style={styles.welcomeBackStyle}>
-              {strings.ENTER_VERIFY_CODE_TEXT} +{apiData?.country_code}{" "}
+              {strings.ENTER_VERIFY_CODE_TEXT} +{apiData?.country_code}
               {apiData?.phone}
             </Text>
             <Text style={styles.welcomeTextStyle}>
