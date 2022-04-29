@@ -15,3 +15,4 @@ export {default as Post} from '../Screens/Post/Post';
 export {default as PostDetails} from '../Screens/PostDetails/PostDetails';
 export {default as Profile} from '../Screens/Profile/Profile';
 export {default as Search} from '../Screens/Search/Search';
+export {default as SelectPhoto} from '../Screens/SelectPhoto/SelectPhoto';

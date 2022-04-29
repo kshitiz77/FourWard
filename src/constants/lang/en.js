@@ -34,5 +34,7 @@ export default{
     RESEND_CODE:'Resend code in ',
     CONFIRM_PASSWORD:'Confirm password',
     SET_PASSWORD:'Set password',
-    SET_PASSWORD_TEXT:'Create secure and unique password.'
+    SET_PASSWORD_TEXT:'Create secure and unique password.',
+    COMMENTS:'Comments',
+    LIKES:'Likes'
 }

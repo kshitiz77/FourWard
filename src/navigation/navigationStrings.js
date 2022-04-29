@@ -13,4 +13,6 @@ export default{
     EDIT_PROFILE: 'EditProfile',
     PROFILE: 'Profile',
     CHANGE_PASSWORD: 'ChangePassword',
+    SELECT_PHOTO: 'SelectPhoto',
+    BOTTOM_TAB_Navigation:'BottomTabNavigation'
 }

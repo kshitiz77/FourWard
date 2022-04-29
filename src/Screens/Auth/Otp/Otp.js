@@ -24,6 +24,17 @@ const Otp = ({ navigation, route }) => {
   const [code, setCode] = useState();
   const apiData = route?.params?.data;
   console.log(apiData);
+
+  const handleVerify = () =>{
+    console.log(code)
+    console.log(apiData.otp)
+    if(code == apiData.otp){
+      alert("Verify Successfully")
+      navigation.navigate(navigationStrings.LOGIN)
+    }else{
+      alert("Verify Error")
+    }
+  }
   return (
     <WrapperContainer>
       <View style={styles.container}>
@@ -72,9 +83,7 @@ const Otp = ({ navigation, route }) => {
               btnText={strings.VERIFY}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
-              onPress={() =>
-                navigation.navigate(navigationStrings.SET_PASSWORD)
-              }
+              onPress={handleVerify}
             />
           </View>
         </KeyboardAvoidingView>

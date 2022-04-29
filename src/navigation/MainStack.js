@@ -7,7 +7,7 @@ const MainStack = (Stack) => {
   return (
   <Stack.Navigator>
     <Stack.Screen 
-      name={navigationStrings.HOME}
+      name={navigationStrings.BOTTOM_TAB_Navigation}
       component={HomeStack}
       options={{ headerShown: false }}
       />

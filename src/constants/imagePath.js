@@ -5,5 +5,12 @@ export default {
   appleLogo: require("../assets/images/ic_apple.png"),
   introImg: require("../assets/images/ic_1.png"),
   back: require("../assets/images/ic_back_arrow.png"),
-  downArrow: require("../assets/images/ic_down.png")
+  downArrow: require("../assets/images/ic_down.png"),
+  homeIcon: require("../assets/images/ic_home.png"),
+  searchIcon: require("../assets/images/ic_srch.png"),
+  addIcon: require("../assets/images/ic_red_add.png"),
+  notifyIcon: require("../assets/images/ic_notify.png"),
+  userIcon: require("../assets/images/ic_user.png"),
+  homeLogo: require("../assets/images/ic_home_icon.png"),
+  locationIcon: require("../assets/images/ic_loc.png"),
 };

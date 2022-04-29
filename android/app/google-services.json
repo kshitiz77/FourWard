@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418192259036",
+    "project_id": "fourward-92456",
+    "storage_bucket": "fourward-92456.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418192259036:android:a600f90fd2137ae4518119",
+        "android_client_info": {
+          "package_name": "com.fourward"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418192259036-89b4245ncmqi8j6mfsm5fph2t09443gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6aAnExM2Yn6NaPz9czlNM_IfQcoAIMNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418192259036-89b4245ncmqi8j6mfsm5fph2t09443gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

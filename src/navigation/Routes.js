@@ -12,8 +12,8 @@ const Stack = createStackNavigator();
 const Routes = () => {
   const userData = useSelector((state) => state?.userData?.userData);
   const appIntroData = useSelector((state) => state?.introReducer?.appIntroData);
-  console.log(appIntroData);
-  console.log(userData?.access_token);
+  console.log(appIntroData,"appIntroData");
+  console.log("userData",userData?.access_token);
   return (
     <NavigationContainer>
       {!!appIntroData 
