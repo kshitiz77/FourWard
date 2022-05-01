@@ -15,7 +15,7 @@ const userData = (state = initialState, action) => {
                 userData: data
             }
         case types.USER_LOGOUT:
-            removeUserData('userData');
+            
             return {
                 ...state?.userData,
                 userData: undefined

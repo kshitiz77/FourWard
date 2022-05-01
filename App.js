@@ -8,6 +8,7 @@ import store from "./src/redux/store";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 const App = () => {
+  
   useEffect(() => {
     getItem("appIntroData").then((res) => {
       console.log("intro data", res);
@@ -18,9 +19,7 @@ const App = () => {
 
     getUserData("userData").then((res) => {
       console.log("store data app ", res);
-      if(!!res){
         actions.saveUserData(res)
-      }
     });
   }, []);
   return (
@@ -29,6 +28,7 @@ const App = () => {
         <Provider store={store}>
           <Routes />
         </Provider>
+
       </SafeAreaProvider>
     </>
   );

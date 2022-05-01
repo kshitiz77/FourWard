@@ -13,12 +13,13 @@ const Routes = () => {
   const userData = useSelector((state) => state?.userData?.userData);
   const appIntroData = useSelector((state) => state?.introReducer?.appIntroData);
   console.log(appIntroData,"appIntroData");
-  console.log("userData",userData?.access_token);
+  console.log("userData api",userData?.access_token);
+  console.log("userData",userData);
   return (
     <NavigationContainer>
       {!!appIntroData 
         ? IntroStack(Stack)
-        : userData?.access_token
+        :userData != null || userData?.access_token
         ? MainStack(Stack)
         : AuthStack(Stack)}
     </NavigationContainer>
