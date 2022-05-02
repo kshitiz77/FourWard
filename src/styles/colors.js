@@ -10,5 +10,6 @@ export default {
   linkSkyBlue: '#32C5FF',
   textDarkGray: '#B8B8B8',
   textMediumGray: '#AEAEAE',
-  textDarkGray_2:'#BFBFBF'
+  textDarkGray_2:'#BFBFBF',
+  darkRed: '#F43738'
 };

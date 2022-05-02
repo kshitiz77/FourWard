@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   postImage: {
     width: moderateScale(width - 68),
-    height: moderateScale(width - 48),
+    height: moderateScale(width - 40),
     marginVertical: moderateScaleVertical(16),
     alignSelf: "center",
   },

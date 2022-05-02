@@ -42,5 +42,6 @@ export default{
     EDIT_PROFILE: 'Edit Profile',
     SIGNOUT: 'Signout',
     SAVE:'Save',
-    NOTIFICATION:'Notification'
+    NOTIFICATION:'Notification',
+    ADD_A_NEW_POST:'added a new post.'
 }

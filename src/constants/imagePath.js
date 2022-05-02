@@ -17,5 +17,6 @@ export default {
   shareIcon: require("../assets/images/ic_direction.png"),
   logoutIcon: require("../assets/images/ic_logout.png"),
   keyIcon: require("../assets/images/ic_key.png"),
-  editIcon: require("../assets/images/ic_edit.png")
+  editIcon: require("../assets/images/ic_edit.png"),
+  ironMan: require("../assets/images/ironMan.jpg"),
 };

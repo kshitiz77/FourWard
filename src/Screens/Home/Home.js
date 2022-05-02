@@ -7,7 +7,7 @@ import imagePath from "../../constants/imagePath";
 import strings from "../../constants/lang";
 import colors from "../../styles/colors";
 import { styles } from "./styles";
-import { moderateScale, textScale } from "../../styles/responsiveSize";
+import { moderateScale, moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 
 const Home = () => {
   return (
@@ -17,7 +17,7 @@ const Home = () => {
           <Image source={imagePath.homeLogo} />
           <Image source={imagePath.locationIcon} />
         </View>
-        <View style={{ paddingBottom: moderateScale(186) }}>
+        <View style={{ marginBottom: moderateScaleVertical(187) }}>
           <FlatList
             data={posts}
             showsVerticalScrollIndicator={false}
