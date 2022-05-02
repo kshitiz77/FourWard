@@ -40,5 +40,7 @@ export default{
     PROFILE: 'Profile',
     CHANGE_PASSWORD: 'Change Password',
     EDIT_PROFILE: 'Edit Profile',
-    SIGNOUT: 'Signout'
+    SIGNOUT: 'Signout',
+    SAVE:'Save',
+    NOTIFICATION:'Notification'
 }
