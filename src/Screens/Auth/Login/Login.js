@@ -39,7 +39,16 @@ const Login = ({ navigation }) => {
   const updateState = (data) =>
     setUserData((userData) => ({ ...userData, ...data }));
 
+    const phoneRegex = /^[0-9]{10}$/;
+    const strongRegex = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+    );
     const handleSubmitBtn = async () => {
+      if(phoneRegex.test(phone)){
+        if(strongRegex.test(password)){
+
+        
+      
       let apiData = {
           phone: phone,
           phone_code: countryCode,
@@ -56,6 +65,12 @@ const Login = ({ navigation }) => {
           console.log("error raised", error)
           alert(error?.message)
       }
+    }else{
+      alert("Please Enter Correct Password");
+    }
+    }else{
+      alert("Please Enter Correct Phone Number");
+    }
   }
 
   return (

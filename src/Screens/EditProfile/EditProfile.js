@@ -5,7 +5,7 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
 import HeaderComp from "../../Components/HeaderComp";
 import strings from "../../constants/lang";
@@ -17,27 +17,39 @@ import {
   textScale,
   width,
 } from "../../styles/responsiveSize";
+import { useSelector } from "react-redux";
 import ButtonComp from "../../Components/ButtonComp";
 import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
 import CountryCodePicker from "../../Components/CountryCodePicker";
 
 const EditProfile = ({ navigation }) => {
-  const [userData, setUserData] = useState({
+  const userData = useSelector((state) => state?.userData?.userData);
+  console.log("userData", userData);
+  const [state, setState] = useState({
     email: "",
     phone: "",
     firstName: "",
     lastName: "",
-    password: "",
-    confirmPassword: "",
   });
-  const [isVisible, setIsVisible] = useState();
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { email, phone, firstName, lastName, password, confirmPassword } =
-    userData;
-  const updateState = (data) =>
-    setUserData((userData) => ({ ...userData, ...data }));
+  const { email, phone, firstName, lastName,  } =
+    state;
+  const updateState = (data) => setState((state) => ({ ...state, ...data }));
+
+  useEffect(() => {
+    if (userData) {
+      setState({
+        email: userData.email,
+        phone: userData.phone,
+        firstName: userData.first_name,
+        lastName: userData.last_name,
+      });
+      setCountryCode(userData.phone_code);
+      setCountryFlag(userData.country_code)
+    }
+  }, [userData]);
 
   return (
     <WrapperContainer>

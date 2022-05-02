@@ -158,10 +158,10 @@ export default function Signup({ navigation }) {
               <TextInputWithLable
                 placeholder={strings.PASSWORD}
                 value={password}
-                inputStyle={{ marginVertical: moderateScaleVertical(16) }}
+                inputStyle={{ marginVertical: moderateScaleVertical(16), }}
                 secureTextEntry={isVisible}
                 rightText={isVisible ? "Show" : "Hide"}
-                onPressRight={() => setIsVisible(!isVisible)}
+                onPressRight={() => setIsVisible(!isVisible)}g
                 onChangeText={(text) => updateState({ password: text })}
               />
               <TextInputWithLable
