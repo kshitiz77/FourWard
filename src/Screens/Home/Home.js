@@ -34,7 +34,7 @@ const Home = () => {
             renderItem={(element, index) => (
               <View key={index} style={styles.flatlistContainer}>
                 <PostHeader userName={element.item.userName} userImg={element.item.userImage} place={element.item.place} />
-                <PostContainer comments={element.item.commentCount} likes={element.item.likes} postImage={element.item.postImage} caption={element.item.caption} postTime={element.item.postTime} />
+                <PostBody comments={element.item.commentCount} likes={element.item.likes} postImage={element.item.postImage} caption={element.item.caption} postTime={element.item.postTime} />
               </View>
             )}
             keyExtractor={(item) => item.id}
@@ -65,7 +65,7 @@ const PostHeader = ({ userName, userImg, place }) => {
   )
 }
 
-const PostContainer = ({ postImage, caption, postTime, comments, likes }) => {
+const PostBody = ({ postImage, caption, postTime, comments, likes }) => {
   return (
     <View style={styles.postContainer}>
       <Image source={postImage} style={styles.postImage} />
