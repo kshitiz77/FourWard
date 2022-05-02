@@ -14,5 +14,7 @@ export default {
   homeLogo: require("../assets/images/ic_home_icon.png"),
   locationIcon: require("../assets/images/ic_loc.png"),
   dotsIcon: require("../assets/images/ic_dots.png"),
-  shareIcon: require("../assets/images/share.png"),
+  shareIcon: require("../assets/images/ic_direction.png"),
+  logoutIcon: require("../assets/images/ic_logout.png"),
+  keyIcon: require("../assets/images/ic_key.png"),
 };

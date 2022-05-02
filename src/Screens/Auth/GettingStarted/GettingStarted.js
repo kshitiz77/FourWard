@@ -90,7 +90,7 @@ const resInfoCallBack = async (error, result) => {
   return (
     <WrapperContainer>
       <View style={styles.container}>
-    {/* <ScrollView style={{flex:1}}> */}
+    <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.logoContainer}>
           <Image source={imagePath.logo} style={styles.logoStyle} />
         </View>
@@ -128,6 +128,7 @@ const resInfoCallBack = async (error, result) => {
             image={imagePath.appleLogo}
             rightBtnImg={true}
           />
+        </View>
         <TouchableOpacity
           style={styles.bottomView}
           onPress={() => navigation.navigate(navigationStrings.SIGNUP)} 
@@ -135,8 +136,7 @@ const resInfoCallBack = async (error, result) => {
           <Text style={styles.newHereText}>{strings.NEW_HERE} </Text>
           <Text style={styles.signupBtnStyle}>{strings.SIGN_UP}</Text>
         </TouchableOpacity>
-        </View>
-      {/* </ScrollView> */}
+      </ScrollView>
       </View>
     </WrapperContainer>
   );

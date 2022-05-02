@@ -81,6 +81,7 @@ const Login = ({ navigation }) => {
                 placeholder={strings.MOBILE_NUMBER}
                 inputStyle={{ flex: 0.63 }}
                 keyboardType="phone-pad"
+                maxLength={10}
               />
             </View>
             <TextInputWithLable
@@ -92,6 +93,7 @@ const Login = ({ navigation }) => {
               rightText={isVisible ? "Show" : "Hide"}
               onPressRight={() => setIsVisible(!isVisible)}
               onChangeText={(text) => updateState({ password: text })}
+              minLength={6}
             />
           </View>
           <View

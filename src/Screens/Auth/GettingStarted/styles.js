@@ -15,9 +15,9 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   logoContainer: {
-    flex: 0.4,
     alignItems: "center",
     justifyContent: "center",
+    marginVertical:moderateScaleVertical(54)
   },
   logoStyle: {
     width: moderateScale(width - width/ 1.51),
@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     resizeMode:'contain'
   },
   btnContainer: {
-    flex: 0.6,
     marginVertical:moderateScaleVertical(24),
     marginHorizontal: moderateScale(24),
   },

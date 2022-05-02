@@ -10,10 +10,12 @@ import React from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
 import actions from "../../redux/actions";
 import imagePath from "../../constants/imagePath";
+import { styles } from "./styles";
 import {
   height,
   moderateScale,
   moderateScaleVertical,
+  textScale,
   width,
 } from "../../styles/responsiveSize";
 import { posts } from "../../constants/data/posts";
@@ -31,6 +33,7 @@ const Home = () => {
         <View style={{ paddingBottom: moderateScaleVertical(206) }}>
           <FlatList
             data={posts}
+            showsVerticalScrollIndicator={false}
             renderItem={(element, index) => (
               <View key={index} style={styles.flatlistContainer}>
                 <PostHeader userName={element.item.userName} userImg={element.item.userImage} place={element.item.place} />
@@ -52,10 +55,10 @@ const PostHeader = ({ userName, userImg, place }) => {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image source={userImg} style={styles.userImage} />
         <View style={styles.centerHeaderText}>
-          <Text style={{ color: colors.white }}>
+          <Text style={{ color: colors.white , fontSize:textScale(16)}}>
             {userName}
           </Text>
-          <Text style={{ color: colors.textMediumGray }}>{place}</Text>
+          <Text style={{ color: colors.textMediumGray, fontSize:textScale(13) }}>{place}</Text>
         </View>
       </View>
       <TouchableOpacity style={{ justifyContent: 'flex-end', marginHorizontal: moderateScale(8) }}>
@@ -69,12 +72,12 @@ const PostBody = ({ postImage, caption, postTime, comments, likes }) => {
   return (
     <View style={styles.postContainer}>
       <Image source={postImage} style={styles.postImage} />
-      <Text style={{ color: colors.white }}>{caption}</Text>
-      <Text style={{ color: colors.textDarkGray_2, marginVertical: moderateScaleVertical(8) }}>{postTime}</Text>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop:moderateScaleVertical(8) }}>
+      <Text style={{ color: colors.white, fontSize:textScale(15) }}>{caption}</Text>
+      <Text style={styles.postTime}>{postTime}</Text>
+      <View style={styles.postBottomView}>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ color: colors.white }}>{strings.COMMENTS} {comments}</Text>
-          <Text style={{ color: colors.white, marginHorizontal: moderateScale(24) }}>{strings.LIKES} {likes}</Text>
+          <Text style={{ color: colors.white, fontSize:textScale(15) }}>{strings.COMMENTS} {comments}</Text>
+          <Text style={styles.likesTextStyle}>{strings.LIKES} {likes}</Text>
         </View>
         <TouchableOpacity>
         <Image source={imagePath.shareIcon} style={styles.shareIcon} />
@@ -83,44 +86,6 @@ const PostBody = ({ postImage, caption, postTime, comments, likes }) => {
     </View>
   )
 }
-const styles = StyleSheet.create({
-  headerStyle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: moderateScaleVertical(24),
-  },
-  flatlistContainer: {
-    backgroundColor: colors.mediumDarkGray,
-    marginBottom: moderateScaleVertical(28),
-    paddingHorizontal: moderateScale(8),
-    paddingVertical: moderateScaleVertical(16),
-    borderRadius: moderateScale(8),
-  },
-  header: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  userImage: {
-    width: moderateScale(width - width / 1.1),
-    height: moderateScale(height - height / 1.05),
-    borderRadius: moderateScale(width - width / 1.05),
-    resizeMode: 'contain',
-    marginHorizontal: moderateScale(8)
-  },
-  postImage: {
-    width: moderateScale(width - width / 6.5),
-    height: moderateScale(height - height / 1.7),
-    resizeMode: 'contain',
-    marginVertical: moderateScaleVertical(16),
-    alignSelf: 'center'
-  },
-  shareIcon: {
-    width: moderateScale(width - width / 1.07), 
-    resizeMode: "contain", 
-    marginRight: moderateScale(10),
-    height: moderateScale(height - height / 1.03)
-  }
-});
+
 
 export default Home;

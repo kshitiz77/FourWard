@@ -36,5 +36,9 @@ export default{
     SET_PASSWORD:'Set password',
     SET_PASSWORD_TEXT:'Create secure and unique password.',
     COMMENTS:'Comments',
-    LIKES:'Likes'
+    LIKES:'Likes',
+    PROFILE: 'Profile',
+    CHANGE_PASSWORD: 'Change Password',
+    EDIT_PROFILE: 'Edit Profile',
+    SIGNOUT: 'Signout'
 }

@@ -1,7 +1,7 @@
 export const posts = [
   {
     userImage: require("../../assets/images/antMan.jpg"),
-    userName: "Russell Gordon",
+    userName: "Ant Man",
     place: "Sector 28D, Chandigarh",
     postImage: require("../../assets/images/antMan.jpg"),
     caption:
@@ -12,7 +12,7 @@ export const posts = [
   },
   {
     userImage: require("../../assets/images/captainAmerica.jpg"),
-    userName: "Lelia Walker",
+    userName: "Captain America",
     place: "Sector 28D, Chandigarh",
     postImage: require("../../assets/images/captainAmerica.jpg"),
     caption:
@@ -23,7 +23,7 @@ export const posts = [
   },
   {
     userImage: require("../../assets/images/thanos.jpg"),
-    userName: "Lelia Walker",
+    userName: "Thanos",
     place: "Sector 28D, Chandigarh",
     postImage: require("../../assets/images/thanos.jpg"),
     caption:
@@ -34,7 +34,7 @@ export const posts = [
   },
   {
     userImage: require("../../assets/images/ironMan.jpg"),
-    userName: "Lelia Walker",
+    userName: "Iron Man",
     place: "Sector 28D, Chandigarh",
     postImage: require("../../assets/images/ironMan.jpg"),
     caption:
@@ -45,7 +45,7 @@ export const posts = [
   },
   {
     userImage: require("../../assets/images/thor.jpg"),
-    userName: "Lelia Walker",
+    userName: "Thor",
     place: "Sector 28D, Chandigarh",
     postImage: require("../../assets/images/thor.jpg"),
     caption:
