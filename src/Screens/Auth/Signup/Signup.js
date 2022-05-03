@@ -16,16 +16,18 @@ import strings from "../../../constants/lang";
 import colors from "../../../styles/colors";
 import navigationStrings from "../../../navigation/navigationStrings";
 import actions from "../../../redux/actions";
+import validator from "../../../utils/validations";
+import DeviceInfo from "react-native-device-info";
 import {
   moderateScale,
   moderateScaleVertical,
   textScale,
 } from "../../../styles/responsiveSize";
-
+import { showError, showSuccess } from "../../../utils/helperFunction";
 export default function Signup({ navigation }) {
   const [userData, setUserData] = useState({
     email: "",
-    phone: "",
+    phoneNumber: "",
     firstName: "",
     lastName: "",
     password: "",
@@ -34,72 +36,62 @@ export default function Signup({ navigation }) {
   const [isVisible, setIsVisible] = useState();
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { email, phone, firstName, lastName, password, confirmPassword } =
+  const { email, phoneNumber, firstName, lastName, password, confirmPassword } =
     userData;
   const updateState = (data) =>
     setUserData((userData) => ({ ...userData, ...data }));
 
-  const phoneRegex = /^[0-9]{10}$/;
-  const strongRegex = new RegExp(
-    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-  );
-  const nameRegex = /^[a-zA-Z]{3,12}$/;
-  const emailRegex = /^[\w-\.\_\$]+@([\w]{3,5}\.)[\w]{2,4}$/;
-
-  const _onSubmitSignUpData = async () => {
-    if (nameRegex.test(firstName)) {
-      if (nameRegex.test(lastName)) {
-        if (emailRegex.test(email)) {
-          if (phoneRegex.test(phone)) {
-            if (strongRegex.test(password)) {
-              if (strongRegex.test(confirmPassword)) {
-                if (password === confirmPassword) {
-                  let apiData = {
-                    first_name: firstName,
-                    last_name: lastName,
-                    email: email,
-                    phone: phone,
-                    phone_code: "",
-                    country_code: countryCode,
-                    device_token: "KDKFJDKFDFKDFDF",
-                    device_type: Platform.OS == "ios" ? "IOS" : "ANDROID",
-                    password: password,
-                  };
-                  console.log(apiData);
-                  try {
-                    const res = await actions.signup(apiData);
-                    console.log("singnup api res_+++++", res);
-                    alert("User signup successfully....!!!");
-                    if (!!res) {
-                      navigation.navigate(navigationStrings.OTP, {
-                        data: res.data,
-                      });
-                    }
-                  } catch (error) {
-                    console.log("error raised", error);
-                    alert(error?.message);
-                  }
-                } else {
-                  alert("Password dosen't match");
-                }
-              } else {
-                alert("Please Enter Correct Confirm Password");
-              }
-            } else {
-              alert("Please Enter Correct Password");
-            }
-          } else {
-            alert("Please Enter Correct Phone Number");
-          }
-        } else {
-          alert("Please Enter Correct Email");
-        }
-      } else {
-        alert("Please Enter Correct Last Name");
-      }
-    } else {
-      alert("Please Enter Correct First Name");
+  const isValidData = () => {
+    const error = validator({
+      email,
+      firstName,
+      lastName,
+      phoneNumber,
+      password,
+      confirmPassword,
+    });
+    if (error) {
+      showError(error);
+      return;
     }
+    return true;
+  };
+
+  const _onSubmitSignUpData = () => {
+    // const checkValid = isValidData();
+    // if (!checkValid) {
+    //   return;
+    // }
+
+
+
+    let apiData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone: phoneNumber,
+      phone_code: countryCode,
+      country_code: countryFlag,
+      device_token: DeviceInfo.getUniqueId(),
+      device_type: Platform.OS == "ios" ? "IOS" : "ANDROID",
+      password: password,
+    };
+    console.log(apiData);
+    actions
+      .signup(apiData)
+      .then((res) => {
+        console.log("singnup api res_+++++", res);
+        alert("User signup successfully....!!!");
+        navigation.navigate(navigationStrings.OTP, {
+          data: res.data,
+        });
+        console.log("apidata", res);
+        console.log("dfata", data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        alert(err?.message);
+      });
   };
   return (
     <WrapperContainer>
@@ -147,8 +139,8 @@ export default function Signup({ navigation }) {
                 />
                 <View style={{ flex: 0.05 }} />
                 <TextInputWithLable
-                  value={phone}
-                  onChangeText={(text) => updateState({ phone: text })}
+                  value={phoneNumber}
+                  onChangeText={(text) => updateState({ phoneNumber: text })}
                   placeholder={strings.MOBILE_NUMBER}
                   inputStyle={{ flex: 0.63 }}
                   keyboardType="phone-pad"
@@ -158,10 +150,11 @@ export default function Signup({ navigation }) {
               <TextInputWithLable
                 placeholder={strings.PASSWORD}
                 value={password}
-                inputStyle={{ marginVertical: moderateScaleVertical(16), }}
+                inputStyle={{ marginVertical: moderateScaleVertical(16) }}
                 secureTextEntry={isVisible}
                 rightText={isVisible ? "Show" : "Hide"}
-                onPressRight={() => setIsVisible(!isVisible)}g
+                onPressRight={() => setIsVisible(!isVisible)}
+                g
                 onChangeText={(text) => updateState({ password: text })}
               />
               <TextInputWithLable

@@ -22,6 +22,7 @@ import ButtonComp from "../../Components/ButtonComp";
 import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
 import CountryCodePicker from "../../Components/CountryCodePicker";
+import navigationStrings from "../../navigation/navigationStrings";
 
 const EditProfile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
@@ -34,9 +35,17 @@ const EditProfile = ({ navigation }) => {
   });
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { email, phone, firstName, lastName,  } =
-    state;
+  const { email, phone, firstName, lastName } = state;
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
+
+  const userDataObj = {
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+    phone: phone,
+    phone_code: countryCode,
+    country_code: countryFlag,
+  };
 
   useEffect(() => {
     if (userData) {
@@ -47,7 +56,7 @@ const EditProfile = ({ navigation }) => {
         lastName: userData.last_name,
       });
       setCountryCode(userData.phone_code);
-      setCountryFlag(userData.country_code)
+      setCountryFlag(userData.country_code);
     }
   }, [userData]);
 
@@ -136,7 +145,7 @@ const EditProfile = ({ navigation }) => {
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
               onPress={() =>
-                navigation.navigate(navigationStrings.SET_PASSWORD)
+                navigation.navigate(navigationStrings.ADD_INFO)
               }
             />
           </View>

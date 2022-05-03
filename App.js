@@ -5,6 +5,7 @@ import Routes from "./src/navigation/Routes";
 import { getItem, getUserData } from "./src/utils/utils";
 import actions from "./src/redux/actions";
 import store from "./src/redux/store";
+import FlashMessage from 'react-native-flash-message'
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
   return (
     <>
       <SafeAreaProvider>
+      <FlashMessage position="top" />
         <Provider store={store}>
           <Routes />
         </Provider>

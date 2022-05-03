@@ -17,9 +17,10 @@ const Home = () => {
           <Image source={imagePath.homeLogo} />
           <Image source={imagePath.locationIcon} />
         </View>
-        <View style={{ marginBottom: moderateScaleVertical(187) }}>
+        <View>
           <FlatList
             data={posts}
+            contentContainerStyle={{paddingBottom: moderateScaleVertical(187) }}
             showsVerticalScrollIndicator={false}
             renderItem={(element, index) => (
               <View key={index} style={styles.flatlistContainer}>

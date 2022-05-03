@@ -11,7 +11,7 @@ export {default as Home} from '../Screens/Home/Home'
 export {default as ChangePassword} from './ChangePassword/ChangePassword'
 export {default as EditProfile} from '../Screens/EditProfile/EditProfile';
 export {default as Notification} from '../Screens/Notification/Notification';
-export {default as Post} from '../Screens/Post/Post';
+export {default as AddInfo} from '../Screens/AddInfo/AddInfo';
 export {default as PostDetails} from '../Screens/PostDetails/PostDetails';
 export {default as Profile} from '../Screens/Profile/Profile';
 export {default as Search} from '../Screens/Search/Search';

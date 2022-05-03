@@ -26,52 +26,58 @@ import TextInputWithLable from "../../../Components/TextInputWithLable";
 import imagePath from "../../../constants/imagePath";
 import navigationStrings from "../../../navigation/navigationStrings";
 import actions from "../../../redux/actions";
+import DeviceInfo from 'react-native-device-info'
+import validator from "../../../utils/validations";
+import { showError, showSuccess } from "../../../utils/helperFunction";
 
 const Login = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState();
-  const [userData, setUserData] = useState({
-    phone: "",
+  const [state, setState] = useState({
+    phoneNumber: "",
     password: "",
   });
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { phone, password } = userData;
-  const updateState = (data) =>
-    setUserData((userData) => ({ ...userData, ...data }));
+  const { phoneNumber, password } = state;
 
-    const phoneRegex = /^[0-9]{10}$/;
-    const strongRegex = new RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-    );
-    const handleSubmitBtn = async () => {
-      if(phoneRegex.test(phone)){
-        if(strongRegex.test(password)){
+  const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
-        
-      
-      let apiData = {
-          phone: phone,
-          phone_code: countryCode,
-          device_token: 'KDKFJDKFDFKDFDF',
-          device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
-          password: password,
-          loginType: 'admin'
-      }
-      try {
-          const res = await actions.login(apiData)
-          console.log("Login api res_+++++",res)
-          // alert("User Login successfully....!!!")
-      } catch (error) {
-          console.log("error raised", error)
-          alert(error?.message)
-      }
-    }else{
-      alert("Please Enter Correct Password");
+  const isValidData = () => {
+    const error = validator({
+      phoneNumber,
+      password,
+    });
+    if (error) {
+      showError(error);
+      return;
     }
-    }else{
-      alert("Please Enter Correct Phone Number");
+    return true;
+  };
+  const handleSubmitBtn = () => {
+    const checkValid = isValidData();
+    if (!checkValid) {
+      return;
     }
-  }
+
+    let apiData = {
+      phone: phoneNumber,
+      phone_code: countryCode,
+      device_token: DeviceInfo.getUniqueId(),
+      device_type: Platform.OS == "ios" ? "IOS" : "ANDROID",
+      password: password,
+      loginType: "admin",
+    };
+    actions
+      .login(apiData)
+      .then((res) => {1234567890
+        console.log("login api res_+++++", res);
+        console.log("apidata", res);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        showError(err);
+      });
+  };
 
   return (
     <WrapperContainer>
@@ -92,7 +98,7 @@ const Login = ({ navigation }) => {
               />
               <View style={{ flex: 0.05 }} />
               <TextInputWithLable
-                onChangeText={(text) => updateState({ phone: text })}
+                onChangeText={(text) => updateState({ phoneNumber: text })}
                 placeholder={strings.MOBILE_NUMBER}
                 inputStyle={{ flex: 0.63 }}
                 keyboardType="phone-pad"

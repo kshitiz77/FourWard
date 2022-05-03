@@ -7,17 +7,36 @@ import TextInputWithLable from '../../Components/TextInputWithLable'
 import { moderateScale, moderateScaleVertical, textScale,  } from '../../styles/responsiveSize'
 import ButtonComp from '../../Components/ButtonComp'
 import colors from '../../styles/colors'
+import { useSelector } from 'react-redux'
+import { apiPost } from '../../utils/utils'
+import { CHANGE_PASSWORD } from '../../config/urls'
+import { NavigationContainer } from '@react-navigation/native'
 
-const ChangePassword = () => {
+const ChangePassword = ({navigation}) => {
+  const userData = useSelector((state) => state?.userData?.userData);
+  console.log("userData", userData);
   const [isVisible, setIsVisible] = useState();
-  const [userData, setUserData] = useState({
+  const [state, setState] = useState({
     password: "",
     confirmPassword:""
   })
-  const {password, confirmPassword} = userData
+  const {password, confirmPassword} = state
 
   const updateState = (data) =>
-    setUserData((userData) => ({ ...userData, ...data }));
+    setState((state) => ({ ...state, ...data }));
+
+  const handleChangePassword = async () =>{
+    let apiData = {
+      user_id : userData.id,
+      password : password,
+  }
+    apiPost(CHANGE_PASSWORD, apiData).then(res=>{
+      alert("Change password sucessfully !", res)
+      navigation.goBack()
+    }).catch(error=>{
+      alert("error raised!", error)
+    })
+  }
   return (
     <WrapperContainer>
       <View style={{marginHorizontal:moderateScale(24), justifyContent:'space-between', flex:1}}>
@@ -34,12 +53,12 @@ const ChangePassword = () => {
             />
            <TextInputWithLable
               placeholder={strings.CONFIRM_PASSWORD}
-              value={password}
+              value={confirmPassword}
               inputStyle={{ marginVertical: moderateScaleVertical(16) }}
               secureTextEntry={isVisible}
               rightText={isVisible ? "Show" : "Hide"}
               onPressRight={() => setIsVisible(!isVisible)}
-              onChangeText={(text) => updateState({ password: text })}
+              onChangeText={(text) => updateState({ confirmPassword: text })}
             />
       </View>
       </View>
@@ -52,7 +71,7 @@ const ChangePassword = () => {
               btnText={strings.SAVE}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
-              onPress={() => navigation.navigate(navigationStrings.SET_PASSWORD)}
+              onPress={handleChangePassword}
             />
           </View>
         </KeyboardAvoidingView>

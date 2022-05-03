@@ -1,6 +1,7 @@
 import { showMessage } from 'react-native-flash-message'
 
-const showError = () =>{
+const showError = (message) =>{
+    console.log(message)
     showMessage({
         type:'danger',
         icon:'danger',
@@ -8,7 +9,7 @@ const showError = () =>{
     })
 }
 
-const showSuccess = () =>{
+const showSuccess = (message) =>{
     showMessage({
         type:'success',
         icon:'success',

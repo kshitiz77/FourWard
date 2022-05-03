@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity
 } from "react-native";
 import React, { useState } from "react";
 import WrapperContainer from "../../../Components/WrapperContainer";
@@ -12,6 +13,7 @@ import strings from "../../../constants/lang";
 import colors from "../../../styles/colors";
 import HeaderComp from "../../../Components/HeaderComp";
 import ButtonComp from "../../../Components/ButtonComp";
+import CountDown from 'react-native-countdown-component';
 import {
   moderateScale,
   moderateScaleVertical,
@@ -42,7 +44,7 @@ const Otp = ({ navigation, route }) => {
           <HeaderComp />
           <View style={{ marginTop: moderateScaleVertical(6) }}>
             <Text style={styles.welcomeBackStyle}>
-              {strings.ENTER_VERIFY_CODE_TEXT} +{apiData?.country_code}
+              {strings.ENTER_VERIFY_CODE_TEXT} +{apiData?.phone_code}
               {apiData?.phone}
             </Text>
             <Text style={styles.welcomeTextStyle}>
@@ -77,7 +79,21 @@ const Otp = ({ navigation, route }) => {
           behavior={Platform.OS === "android" ? "height" : "padding"}
           contentContainerStyle={{}}
         >
-          <Text style={styles.belowTextStyle}>{strings.RESEND_CODE} 0:14</Text>
+          <View style={{justifyContent:'space-between', flexDirection:'row'}}>
+          <Text style={styles.belowTextStyle}>{strings.RESEND_CODE_IN}  <CountDown
+        until={60 * 10 + 30}
+        size={15}
+        onFinish={() => alert('Finished')}
+        digitStyle={{ }}
+        digitTxtStyle={{color: '#1CC625'}}
+        timeToShow={['M','S']}
+        timeLabels={false}
+      /></Text>
+          <TouchableOpacity>
+         
+            <Text style={{color:colors.darkRed, fontSize:textScale(14)}}>{strings.RESEND_CODE}</Text>
+          </TouchableOpacity>
+          </View>
           <View style={{ marginBottom: moderateScaleVertical(56) }}>
             <ButtonComp
               btnText={strings.VERIFY}

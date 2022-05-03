@@ -426,6 +426,8 @@ PODS:
     - React-Core
   - RNCMaskedView (0.2.6):
     - React-Core
+  - RNDeviceInfo (8.7.1):
+    - React-Core
   - RNFBApp (14.9.1):
     - Firebase/CoreOnly (= 8.15.0)
     - React-Core
@@ -502,6 +504,7 @@ DEPENDENCIES:
   - ReactNativeLocalization (from `../node_modules/react-native-localization`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
@@ -611,6 +614,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-masked-view/masked-view"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNGestureHandler:
@@ -685,6 +690,7 @@ SPEC CHECKSUMS:
   ReactNativeLocalization: be60e3a0e6e8db88d9f8190719ffb75e1cdab22a
   RNCAsyncStorage: bef53cb70c06b8eff11bab4a848de86ad4488c39
   RNCMaskedView: d367b2a8df3992114e31b32b091a0c00dc800827
+  RNDeviceInfo: af47a7d1a09d64c8cbb8b0c883db9bca422a9813
   RNFBApp: fd23737680ed2bdde41ca27d8bfb171b6d668c6b
   RNGestureHandler: 4f4986408310a43f1606c391f38f76e0d6e790d5
   RNGoogleSignin: 7580e6618798be9d090524bb31538378f92ce746

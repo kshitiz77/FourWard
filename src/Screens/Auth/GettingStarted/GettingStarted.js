@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, ScrollView } from "react-native";
 import React, {useEffect} from "react";
 import imagePath from "../../../constants/imagePath";
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
@@ -10,8 +10,14 @@ import ButtonComp from "../../../Components/ButtonComp";
 import navigationStrings from "../../../navigation/navigationStrings";
 import { removeUserData } from "../../../utils/utils";
 import actions from "../../../redux/actions";
+import { useSelector } from "react-redux";
+import DeviceInfo from 'react-native-device-info';
+import { CHECK_SOCIAL_ID } from "../../../config/urls";
+import { getItem } from "../../../utils/utils";
 
 const GettingStarted = ({ navigation }) => {
+  const userData = useSelector((state) => state?.userData?.userData);
+  console.log("userData", userData);
   useEffect(() => {
     GoogleSignin.configure()
 }, [])
@@ -21,10 +27,17 @@ const googleLogin = async () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log("userInfo", userInfo)
-      const email = userInfo.user.email;
-      const userId = userInfo.user.id;
-      const data = { email, userId }
-      actions.login(data)
+      const email = userInfo?.user.email;
+      const userId = userInfo?.user.id;
+      const data ={
+        email: email,
+        userId: userId,
+        deviceToken: DeviceInfo.getUniqueId(),
+        deviceType: Platform.OS == "ios" ? "IOS" : "ANDROID",
+      }
+      if(data){
+        actions?.login(data)
+      }
       // this.setState({ userInfo });
   } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
