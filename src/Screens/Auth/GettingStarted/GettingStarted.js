@@ -31,7 +31,7 @@ const googleLogin = async () => {
       const userId = userInfo?.user.id;
       const data ={
         email: email,
-        userId: userId,
+        socialId: userId,
         deviceToken: DeviceInfo.getUniqueId(),
         deviceType: Platform.OS == "ios" ? "IOS" : "ANDROID",
       }

@@ -8,9 +8,10 @@ import { moderateScale, moderateScaleVertical, textScale } from '../../styles/re
 import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../navigation/navigationStrings'
-
+import { useSelector } from 'react-redux';
 const Profile = ({navigation}) => {
-
+  const userData = useSelector((state) => state?.userData?.userData);
+  console.log("userData", userData);
   const signOut = async () => {
     try {
       actions.logout();
@@ -24,6 +25,8 @@ const Profile = ({navigation}) => {
     <WrapperContainer>
       <View style={styles.container}>
         <Text style={{color:colors.white, fontSize:textScale(16), }}>{strings.PROFILE}</Text>
+        {!(userData?.socialId )?
+        <View>
         <TouchableOpacity style={styles.menuStyle} onPress={()=>navigation.navigate(navigationStrings.EDIT_PROFILE)}>
           <Image source={imagePath.userIcon} />
           <Text style={styles.menuTextStyle}>{strings.EDIT_PROFILE}</Text>
@@ -31,7 +34,10 @@ const Profile = ({navigation}) => {
         <TouchableOpacity style={styles.menuStyle} onPress={()=>navigation.navigate(navigationStrings.CHANGE_PASSWORD)}>
           <Image source={imagePath.keyIcon}/>
           <Text style={styles.menuTextStyle}>{strings.CHANGE_PASSWORD}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> 
+        </View>
+        :null
+        }
         <TouchableOpacity style={styles.menuStyle} onPress={()=>actions.logout()}>
           <Image source={imagePath.logoutIcon}/>
           <Text style={styles.menuTextStyle}>{strings.SIGNOUT}</Text>

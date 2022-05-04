@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   Image,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
@@ -23,22 +24,27 @@ import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
 import CountryCodePicker from "../../Components/CountryCodePicker";
 import navigationStrings from "../../navigation/navigationStrings";
+import ImagePicker from "react-native-image-crop-picker";
+import { openGalleray } from "./imagePickerFun";
 
 const EditProfile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
   console.log("userData", userData);
   const [state, setState] = useState({
+    userImage: "",
     email: "",
     phone: "",
     firstName: "",
     lastName: "",
+    imageType: null,
   });
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { email, phone, firstName, lastName } = state;
+  const { email, phone, firstName, lastName, userImage, imageType } = state;
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
   const userDataObj = {
+    user_Image: userImage,
     first_name: firstName,
     last_name: lastName,
     email: email,
@@ -60,6 +66,38 @@ const EditProfile = ({ navigation }) => {
     }
   }, [userData]);
 
+  const _selectProfileImage = async() => {
+
+    try {
+      const res = await openGalleray()
+      console.log("image res",res)
+      updateState({
+        userImage: res?.sourceURL || res?.path,
+        imageType: res?.mime,
+      });
+    } catch (error) {
+      console.log("error raised",error)
+    }
+    // ImagePicker.openPicker({
+    //   width: 400,
+    //   height: 400,
+    //   cropperCircleOverlay: true,
+    //   cropping: true,
+    // }).then((res) => {
+    //   console.log(res);
+      // updateState({
+      //   userImage: res?.sourceURL || res?.path,
+      //   imageType: res?.mime,
+      // });
+    // });
+  };
+
+  const _submitEditProfileData = async () =>{
+    let apiData = {
+
+  }
+  }
+
   return (
     <WrapperContainer>
       <View
@@ -77,19 +115,28 @@ const EditProfile = ({ navigation }) => {
           />
           <View style={{ marginTop: moderateScaleVertical(42) }}>
             <View style={{ alignItems: "center" }}>
-              <Image
-                source={require("../../assets/images/ironMan.jpg")}
-                style={styles.profileImage}
-              />
-              <View>
+              <View style={[styles.profileImage, { backgroundColor: "red" }]}>
                 <Image
-                  source={imagePath.editIcon}
-                  style={{
-                    marginTop: moderateScaleVertical(-20),
-                    marginRight: moderateScale(-40),
-                    alignSelf: "flex-end",
-                  }}
+                  source={
+                    userImage
+                      ? { uri: userImage }
+                      : require("../../assets/images/ironMan.jpg")
+                  }
+                  style={styles.profileImage}
                 />
+              </View>
+
+              <View>
+                <TouchableOpacity onPress={_selectProfileImage}>
+                  <Image
+                    source={imagePath.editIcon}
+                    style={{
+                      marginTop: moderateScaleVertical(-20),
+                      marginRight: moderateScale(-40),
+                      alignSelf: "flex-end",
+                    }}
+                  />
+                </TouchableOpacity>
               </View>
             </View>
             <View style={{ marginTop: moderateScaleVertical(32) }}>
@@ -144,9 +191,7 @@ const EditProfile = ({ navigation }) => {
               btnText={strings.SAVE}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
-              onPress={() =>
-                navigation.navigate(navigationStrings.ADD_INFO)
-              }
+              // onPress={}
             />
           </View>
         </KeyboardAvoidingView>
@@ -159,7 +204,6 @@ const styles = StyleSheet.create({
   profileImage: {
     width: moderateScale(width / 4),
     height: moderateScale(width / 4),
-    resizeMode: "contain",
     borderRadius: moderateScale(width / 8),
   },
 });

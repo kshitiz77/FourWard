@@ -41,21 +41,17 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-  
-  <key>FacebookAppID</key>
-  <string>701904907676157</string>
-  <key>FacebookDisplayName</key>
-  <string>4WARD</string>
-  
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-    <string>fbapi</string>
-    <string>fb-messenger-api</string>
-    <string>fbauth2</string>
-    <string>fbshareextension</string>
-  </array>
-  
-  
+	<key>FacebookAppID</key>
+	<string>701904907676157</string>
+	<key>FacebookDisplayName</key>
+	<string>4WARD</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -70,6 +66,8 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

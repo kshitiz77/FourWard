@@ -13,7 +13,6 @@ import strings from "../../../constants/lang";
 import colors from "../../../styles/colors";
 import HeaderComp from "../../../Components/HeaderComp";
 import ButtonComp from "../../../Components/ButtonComp";
-import CountDown from 'react-native-countdown-component';
 import {
   moderateScale,
   moderateScaleVertical,
@@ -80,15 +79,7 @@ const Otp = ({ navigation, route }) => {
           contentContainerStyle={{}}
         >
           <View style={{justifyContent:'space-between', flexDirection:'row'}}>
-          <Text style={styles.belowTextStyle}>{strings.RESEND_CODE_IN}  <CountDown
-        until={60 * 10 + 30}
-        size={15}
-        onFinish={() => alert('Finished')}
-        digitStyle={{ }}
-        digitTxtStyle={{color: '#1CC625'}}
-        timeToShow={['M','S']}
-        timeLabels={false}
-      /></Text>
+          <Text style={styles.belowTextStyle}>{strings.RESEND_CODE_IN}  0:30</Text>
           <TouchableOpacity>
          
             <Text style={{color:colors.darkRed, fontSize:textScale(14)}}>{strings.RESEND_CODE}</Text>

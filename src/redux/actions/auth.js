@@ -15,7 +15,7 @@ export const saveUserData = (data) => {
 
 export const login = (data) => {
   console.log(data, "the given data");
-  if (data?.userId || data.id) {
+  if (data?.socialId || data.id) {
     saveUserData(data)
   } else {
     return new Promise((resolve, reject) => {

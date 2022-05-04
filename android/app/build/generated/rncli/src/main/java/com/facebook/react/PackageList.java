@@ -19,10 +19,14 @@ import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // @react-native-masked-view/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// react-native-device-info
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // react-native-fbsdk
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
+// react-native-image-crop-picker
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-localization
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 // react-native-safe-area-context
@@ -78,8 +82,10 @@ public class PackageList {
       new ReactNativeFirebaseAppPackage(),
       new RNGoogleSigninPackage(),
       new RNCMaskedViewPackage(),
+      new RNDeviceInfo(),
       new FBSDKPackage(),
       new RNGestureHandlerPackage(),
+      new PickerPackage(),
       new ReactNativeLocalizationPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage()
