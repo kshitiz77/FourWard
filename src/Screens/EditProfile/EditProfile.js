@@ -31,7 +31,7 @@ const EditProfile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
   console.log("userData", userData);
   const [state, setState] = useState({
-    userImage: "",
+    profileImage: "",
     email: "",
     phone: "",
     firstName: "",
@@ -40,11 +40,11 @@ const EditProfile = ({ navigation }) => {
   });
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { email, phone, firstName, lastName, userImage, imageType } = state;
+  const { email, phone, firstName, lastName, profileImage, imageType } = state;
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
   const userDataObj = {
-    user_Image: userImage,
+    profile_Image: profileImage,
     first_name: firstName,
     last_name: lastName,
     email: email,
@@ -72,24 +72,12 @@ const EditProfile = ({ navigation }) => {
       const res = await openGalleray()
       console.log("image res",res)
       updateState({
-        userImage: res?.sourceURL || res?.path,
+        profileImage: res?.sourceURL || res?.path,
         imageType: res?.mime,
       });
     } catch (error) {
       console.log("error raised",error)
     }
-    // ImagePicker.openPicker({
-    //   width: 400,
-    //   height: 400,
-    //   cropperCircleOverlay: true,
-    //   cropping: true,
-    // }).then((res) => {
-    //   console.log(res);
-      // updateState({
-      //   userImage: res?.sourceURL || res?.path,
-      //   imageType: res?.mime,
-      // });
-    // });
   };
 
   const _submitEditProfileData = async () =>{
@@ -118,8 +106,8 @@ const EditProfile = ({ navigation }) => {
               <View style={[styles.profileImage, { backgroundColor: "red" }]}>
                 <Image
                   source={
-                    userImage
-                      ? { uri: userImage }
+                    profileImage
+                      ? { uri: profileImage }
                       : require("../../assets/images/ironMan.jpg")
                   }
                   style={styles.profileImage}
