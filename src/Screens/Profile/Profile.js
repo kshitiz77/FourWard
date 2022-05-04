@@ -25,17 +25,16 @@ const Profile = ({navigation}) => {
     <WrapperContainer>
       <View style={styles.container}>
         <Text style={{color:colors.white, fontSize:textScale(16), }}>{strings.PROFILE}</Text>
-        {!(userData?.socialId )?
-        <View>
+        
         <TouchableOpacity style={styles.menuStyle} onPress={()=>navigation.navigate(navigationStrings.EDIT_PROFILE)}>
           <Image source={imagePath.userIcon} />
           <Text style={styles.menuTextStyle}>{strings.EDIT_PROFILE}</Text>
         </TouchableOpacity>
+        {!(userData?.socialId )?
         <TouchableOpacity style={styles.menuStyle} onPress={()=>navigation.navigate(navigationStrings.CHANGE_PASSWORD)}>
           <Image source={imagePath.keyIcon}/>
           <Text style={styles.menuTextStyle}>{strings.CHANGE_PASSWORD}</Text>
         </TouchableOpacity> 
-        </View>
         :null
         }
         <TouchableOpacity style={styles.menuStyle} onPress={()=>actions.logout()}>

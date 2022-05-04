@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
     };
     actions
       .login(apiData)
-      .then((res) => {1234567890
+      .then((res) => {
         console.log("login api res_+++++", res);
         console.log("apidata", res);
       })

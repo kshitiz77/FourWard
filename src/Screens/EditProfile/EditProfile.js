@@ -25,13 +25,15 @@ import imagePath from "../../constants/imagePath";
 import CountryCodePicker from "../../Components/CountryCodePicker";
 import navigationStrings from "../../navigation/navigationStrings";
 import ImagePicker from "react-native-image-crop-picker";
-import { openGalleray } from "./imagePickerFun";
+import { openGalleray } from "../../utils/imagePickerFun";
+import actions from "../../redux/actions";
+
 
 const EditProfile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
   console.log("userData", userData);
   const [state, setState] = useState({
-    profileImage: "",
+    profileImage: null,
     email: "",
     phone: "",
     firstName: "",
@@ -43,48 +45,69 @@ const EditProfile = ({ navigation }) => {
   const { email, phone, firstName, lastName, profileImage, imageType } = state;
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
-  const userDataObj = {
-    profile_Image: profileImage,
-    first_name: firstName,
-    last_name: lastName,
-    email: email,
-    phone: phone,
-    phone_code: countryCode,
-    country_code: countryFlag,
-  };
+  // const userDataObj = {
+  //   profile_Image: profileImage,
+  //   first_name: firstName,
+  //   last_name: lastName,
+  //   email: email,
+  //   phone: phone,
+  //   phone_code: countryCode,
+  //   country_code: countryFlag,
+  // };
 
   useEffect(() => {
     if (userData) {
       setState({
-        email: userData.email,
-        phone: userData.phone,
-        firstName: userData.first_name,
-        lastName: userData.last_name,
+        email: userData?.email,
+        phone: userData?.phone,
+        firstName: userData?.first_name,
+        lastName: userData?.last_name,
+        profileImage: userData?.profile,
       });
-      setCountryCode(userData.phone_code);
-      setCountryFlag(userData.country_code);
+      setCountryCode(userData?.phone_code);
+      setCountryFlag(userData?.country_code);
     }
   }, [userData]);
 
-  const _selectProfileImage = async() => {
-
+  const _selectProfileImage = async () => {
     try {
-      const res = await openGalleray()
-      console.log("image res",res)
+      const res = await openGalleray();
+      console.log("image res", res);
       updateState({
         profileImage: res?.sourceURL || res?.path,
         imageType: res?.mime,
       });
     } catch (error) {
-      console.log("error raised",error)
+      console.log("error raised", error);
     }
   };
 
-  const _submitEditProfileData = async () =>{
-    let apiData = {
 
-  }
-  }
+  const _submitEditProfileData = async () => {
+    let formaData = new FormData();
+    formaData.append("first_name", firstName);
+    formaData.append("last_name", lastName);
+    formaData.append("email", email);
+    formaData.append("image", {
+      uri: profileImage,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      type: imageType,
+    });
+    console.log(formaData, "formaData");
+
+    actions
+      .editProfile(formaData, { "Content-Type": "multipart/form-data" })
+      .then((res) => {
+        console.log("editProfile api res_+++++", res);
+        alert(res?.message);
+        navigation.goBack();
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        alert(err?.message);
+      });
+  };
+  console.log(profileImage, "profileImage");
 
   return (
     <WrapperContainer>
@@ -115,13 +138,18 @@ const EditProfile = ({ navigation }) => {
               </View>
 
               <View>
-                <TouchableOpacity onPress={_selectProfileImage}>
+                <TouchableOpacity
+                  // hitSlop={{ left: 250, right: 250, top: 250, bottom: 250 }}
+                  onPress={_selectProfileImage}
+                >
                   <Image
                     source={imagePath.editIcon}
                     style={{
-                      marginTop: moderateScaleVertical(-20),
-                      marginRight: moderateScale(-40),
+                      height: moderateScale(width / 15),
+                      width: moderateScale(width / 15),
                       alignSelf: "flex-end",
+                      marginTop: moderateScaleVertical(-15),
+                      marginLeft: moderateScale(40),
                     }}
                   />
                 </TouchableOpacity>
@@ -179,7 +207,7 @@ const EditProfile = ({ navigation }) => {
               btnText={strings.SAVE}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
-              // onPress={}
+              onPress={_submitEditProfileData}
             />
           </View>
         </KeyboardAvoidingView>

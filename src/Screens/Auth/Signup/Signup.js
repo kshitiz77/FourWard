@@ -95,10 +95,11 @@ export default function Signup({ navigation }) {
   };
   return (
     <WrapperContainer>
-      <View style={styles.container}>
-        <View>
+      <View style={{marginHorizontal: moderateScale(24)}}>
           <HeaderComp />
-          <ScrollView>
+          </View>
+          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
             <View style={{ marginTop: moderateScaleVertical(6) }}>
               <Text style={styles.welcomeBackStyle}>
                 {strings.CREATE_NEW_ACCOUNT}
@@ -167,13 +168,13 @@ export default function Signup({ navigation }) {
                 onChangeText={(text) => updateState({ confirmPassword: text })}
               />
             </View>
-          </ScrollView>
         </View>
+          </ScrollView>
         <KeyboardAvoidingView
           behavior={Platform.OS === "android" ? "height" : "padding"}
           contentContainerStyle={{}}
         >
-          <View style={{ marginBottom: moderateScaleVertical(56) }}>
+          <View style={{ marginBottom: moderateScaleVertical(56) , marginHorizontal: moderateScale(24)}}>
             <ButtonComp
               btnText={strings.NEXT}
               btnStyle={{ backgroundColor: colors.btnOrange }}
@@ -182,7 +183,6 @@ export default function Signup({ navigation }) {
             />
           </View>
         </KeyboardAvoidingView>
-      </View>
     </WrapperContainer>
   );
 }

@@ -7,12 +7,13 @@ import types from '../redux/types';
 const { dispatch, getState } = store;
 
 export async function getHeaders() {
-	let loginUser = await AsyncStorage.getItem('loginUser');
+	let loginUser = await AsyncStorage.getItem('userData');
+	console.log(loginUser, 'loginUser')
 	if (loginUser) {
 		loginUser = JSON.parse(loginUser);
-		//console.log(userData.accessToken, 'header')
+	
 		return {
-			authorization: `${loginUser?.access_token}`,
+			authorization: `Bearer ${loginUser?.access_token}`,
 		};
 	}
 	return {};
@@ -35,6 +36,7 @@ console.log(data,"data")
 			...headers
 		};
 
+		console.log(headers,"headers");
 		if (method === 'get' || method === 'delete') {
 			data = {
 				...requestOptions,
@@ -58,18 +60,19 @@ console.log(data,"data")
 				console.log(error)
 				console.log(error && error.response, 'the error respne')
 				if (error && error.response && error.response.status === 401) {
-					clearUserData();
-					clearLoginUser();	
+					// clearUserData();
+					// clearLoginUser();	
 					// NavigationService.resetNavigation();
 					//NavigationService.navigate('loginUsingEmailScreen');
-					dispatch({
-						type: types.CLEAR_REDUX_STATE,
-						payload: {}
-					});
-					dispatch({
-						type: types.NO_INTERNET,
-						payload: { internetConnection: true },
-					});
+					// dispatch({
+					// 	type: types.CLEAR_REDUX_STATE,
+					// 	payload: {}
+					// });
+					// dispatch({
+					// 	type: types.NO_INTERNET,
+					// 	payload: { internetConnection: true },
+					// });
+					alert( error.response?.message)
 
 
 				}
