@@ -13,6 +13,7 @@ const Card = ({
   caption,
   commentCount,
   likes,
+  onPress
 }) => {
   return (
     <>
@@ -40,11 +41,13 @@ const Card = ({
         </TouchableOpacity>
       </View>
       <View style={styles.postContainer}>
+        <TouchableOpacity onPress={onPress}>
         <Image
           source={postImage}
           style={styles.postImage}
           resizeMode={"contain"}
         />
+        </TouchableOpacity>
         <Text style={{ color: colors.white, fontSize: textScale(14) }}>
           {caption}
         </Text>

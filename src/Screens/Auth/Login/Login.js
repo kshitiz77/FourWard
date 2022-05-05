@@ -1,34 +1,23 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Platform,
-  KeyboardAvoidingView,
-} from "react-native";
 import React, { useState } from "react";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import CountryCodePicker from "../../../Components/CountryCodePicker";
-import WrapperContainer from "../../../Components/WrapperContainer";
-import HeaderComp from "../../../Components/HeaderComp";
 import {
-  height,
-  moderateScale,
-  moderateScaleVertical,
-  textScale,
-  width,
-} from "../../../styles/responsiveSize";
+  KeyboardAvoidingView, Platform, Text, TouchableOpacity, View
+} from "react-native";
+import DeviceInfo from 'react-native-device-info';
 import ButtonComp from "../../../Components/ButtonComp";
-import strings from "../../../constants/lang";
-import colors from "../../../styles/colors";
+import CountryCodePicker from "../../../Components/CountryCodePicker";
+import HeaderComp from "../../../Components/HeaderComp";
 import TextInputWithLable from "../../../Components/TextInputWithLable";
-import imagePath from "../../../constants/imagePath";
+import WrapperContainer from "../../../Components/WrapperContainer";
+import strings from "../../../constants/lang";
 import navigationStrings from "../../../navigation/navigationStrings";
 import actions from "../../../redux/actions";
-import DeviceInfo from 'react-native-device-info'
+import colors from "../../../styles/colors";
+import {
+  moderateScaleVertical
+} from "../../../styles/responsiveSize";
+import { showError } from "../../../utils/helperFunction";
 import validator from "../../../utils/validations";
-import { showError, showSuccess } from "../../../utils/helperFunction";
+import { styles } from "./styles";
 
 const Login = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState();
@@ -75,7 +64,7 @@ const Login = ({ navigation }) => {
       })
       .catch((err) => {
         console.log(err, "err");
-        showError(err);
+        showError("Enter correct credential")
       });
   };
 
@@ -109,7 +98,8 @@ const Login = ({ navigation }) => {
               placeholder={strings.PASSWORD}
               label={strings.PASSWORD}
               value={password}
-              inputStyle={{ marginVertical: moderateScaleVertical(16) }}
+              inputStyle={{ marginVertical: moderateScaleVertical(16)  }}
+              rightTextStyle={styles.rightTextStyle}
               secureTextEntry={isVisible}
               rightText={isVisible ? "Show" : "Hide"}
               onPressRight={() => setIsVisible(!isVisible)}
@@ -118,7 +108,7 @@ const Login = ({ navigation }) => {
             />
           </View>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={styles.otpContainer}
           >
             <TouchableOpacity
               onPress={() => navigation.navigate(navigationStrings.OTP)}
@@ -127,7 +117,7 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate(navigationStrings.CHANGE_PASSWORD)
+                navigation.navigate(navigationStrings.FORGOT_PASSWORD)
               }
             >
               <Text style={{ color: colors.linkSkyBlue }}>
@@ -145,7 +135,7 @@ const Login = ({ navigation }) => {
               btnText={strings.LOGIN}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               onPress={handleSubmitBtn}
-              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+              btnTextStyle={styles.buttonStyle}
             />
           </View>
         </KeyboardAvoidingView>
@@ -154,30 +144,6 @@ const Login = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    marginHorizontal: moderateScale(24),
-    // backgroundColor:'red'
-  },
-  welcomeBackStyle: {
-    fontSize: textScale(24),
-    color: colors.white,
-  },
-  welcomeTextStyle: {
-    fontSize: textScale(15),
-    color: colors.textGray,
-    marginTop: moderateScaleVertical(6),
-  },
-  countryCodePicker: {
-    flex: 0.3,
-    alignItems: "center",
-    paddingVertical: moderateScaleVertical(15),
-    borderRadius: moderateScale(8),
-    flexDirection: "row",
-    backgroundColor: colors.mediumDarkGray,
-  },
-});
+
 
 export default Login;

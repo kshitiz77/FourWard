@@ -17,6 +17,7 @@ import {
   textScale,
   width,
 } from "../../styles/responsiveSize";
+import { styles } from "./styles";
 import ButtonComp from "../../Components/ButtonComp";
 import TextInputWithLable from "../../Components/TextInputWithLable";
 import colors from "../../styles/colors";
@@ -27,11 +28,7 @@ const AddInfo = ({ navigation }) => {
   return (
     <WrapperContainer>
       <View
-        style={{
-          marginHorizontal: moderateScale(24),
-          justifyContent: "space-between",
-          flex: 1,
-        }}
+        style={styles.container}
       >
         <View>
           <HeaderComp
@@ -89,23 +86,6 @@ const AddInfo = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  descriptionInputStyle:{
-    height: moderateScale(width / 3),
-    fontSize: textScale(14),
-    paddingTop: moderateScaleVertical(8),
-    paddingHorizontal: moderateScale(16),
-    marginVertical: moderateScaleVertical(16),
-  },
-  addmorePostStyle:{
-    alignItems: "center",
-    justifyContent: "center",
-    width: moderateScale(width / 5.5),
-    height: moderateScale(width / 5.5),
-    backgroundColor: colors.mediumDarkGray,
-    borderRadius: moderateScale(8),
-    marginLeft: moderateScale(16),
-  }
-});
+
 
 export default AddInfo;

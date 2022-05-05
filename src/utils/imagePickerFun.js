@@ -1,6 +1,6 @@
 import ImageCropPicker from "react-native-image-crop-picker";
 
-export const openGalleray = (data) => {
+export const openGallery = (data) => {
       return new Promise((resolve, reject) => {
         ImageCropPicker.openPicker({
             width: 400,

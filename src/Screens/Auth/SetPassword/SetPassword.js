@@ -68,7 +68,7 @@ const SetPassword = () => {
             <ButtonComp
               btnText={strings.GET_STARTED}
               btnStyle={{ backgroundColor: colors.btnOrange }}
-              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+              btnTextStyle={styles.btnTextStyle}
               onPress={() => navigation.navigate(navigationStrings.SET_PASSWORD)}
             />
           </View>
@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
     color: colors.textDarkGray,
     marginTop: moderateScaleVertical(8),
   },
+  btnTextStyle:{ 
+    color: colors.white, 
+    textTransform: "uppercase" 
+  }
 });
 
 export default SetPassword

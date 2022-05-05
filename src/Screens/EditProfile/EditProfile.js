@@ -1,38 +1,31 @@
+import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
+  Image, KeyboardAvoidingView, StyleSheet,
+  TouchableOpacity, View
 } from "react-native";
-import React, { useState, useEffect } from "react";
-import WrapperContainer from "../../Components/WrapperContainer";
-import HeaderComp from "../../Components/HeaderComp";
-import strings from "../../constants/lang";
-import TextInputWithLable from "../../Components/TextInputWithLable";
-import {
-  height,
-  moderateScale,
-  moderateScaleVertical,
-  textScale,
-  width,
-} from "../../styles/responsiveSize";
 import { useSelector } from "react-redux";
 import ButtonComp from "../../Components/ButtonComp";
-import colors from "../../styles/colors";
+import HeaderComp from "../../Components/HeaderComp";
+import TextInputWithLable from "../../Components/TextInputWithLable";
+import WrapperContainer from "../../Components/WrapperContainer";
 import imagePath from "../../constants/imagePath";
-import CountryCodePicker from "../../Components/CountryCodePicker";
-import navigationStrings from "../../navigation/navigationStrings";
-import ImagePicker from "react-native-image-crop-picker";
-import { openGalleray } from "../../utils/imagePickerFun";
+import strings from "../../constants/lang";
 import actions from "../../redux/actions";
+import colors from "../../styles/colors";
+import CountryCodePicker from '../../Components/CountryCodePicker'
+import {
+  moderateScale,
+  moderateScaleVertical, width
+} from "../../styles/responsiveSize";
+import { openGallery } from "../../utils/imagePickerFun";
+import { styles } from "./styles";
 
 
 const EditProfile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
   console.log("userData", userData);
   const [state, setState] = useState({
+
     profileImage: null,
     email: "",
     phone: "",
@@ -40,20 +33,10 @@ const EditProfile = ({ navigation }) => {
     lastName: "",
     imageType: null,
   });
+  const { email, phone, firstName, lastName, profileImage, imageType } = state;
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
-  const { email, phone, firstName, lastName, profileImage, imageType } = state;
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
-
-  // const userDataObj = {
-  //   profile_Image: profileImage,
-  //   first_name: firstName,
-  //   last_name: lastName,
-  //   email: email,
-  //   phone: phone,
-  //   phone_code: countryCode,
-  //   country_code: countryFlag,
-  // };
 
   useEffect(() => {
     if (userData) {
@@ -64,14 +47,12 @@ const EditProfile = ({ navigation }) => {
         lastName: userData?.last_name,
         profileImage: userData?.profile,
       });
-      setCountryCode(userData?.phone_code);
-      setCountryFlag(userData?.country_code);
     }
   }, [userData]);
 
   const _selectProfileImage = async () => {
     try {
-      const res = await openGalleray();
+      const res = await openGallery();
       console.log("image res", res);
       updateState({
         profileImage: res?.sourceURL || res?.path,
@@ -112,11 +93,7 @@ const EditProfile = ({ navigation }) => {
   return (
     <WrapperContainer>
       <View
-        style={{
-          marginHorizontal: moderateScale(24),
-          justifyContent: "space-between",
-          flex: 1,
-        }}
+        style={styles.container}
       >
         <View>
           <HeaderComp
@@ -126,7 +103,7 @@ const EditProfile = ({ navigation }) => {
           />
           <View style={{ marginTop: moderateScaleVertical(42) }}>
             <View style={{ alignItems: "center" }}>
-              <View style={[styles.profileImage, { backgroundColor: "red" }]}>
+              <View style={styles.profileImage}>
                 <Image
                   source={
                     profileImage
@@ -144,13 +121,7 @@ const EditProfile = ({ navigation }) => {
                 >
                   <Image
                     source={imagePath.editIcon}
-                    style={{
-                      height: moderateScale(width / 15),
-                      width: moderateScale(width / 15),
-                      alignSelf: "flex-end",
-                      marginTop: moderateScaleVertical(-15),
-                      marginLeft: moderateScale(40),
-                    }}
+                    style={styles.editIconStyle}
                   />
                 </TouchableOpacity>
               </View>
@@ -178,7 +149,8 @@ const EditProfile = ({ navigation }) => {
                 inputStyle={{ marginVertical: moderateScaleVertical(16) }}
                 onChangeText={(text) => updateState({ email: text })}
               />
-              <View style={{ flexDirection: "row" }}>
+              { phone ?
+                <View style={{ flexDirection: "row" }}>
                 <CountryCodePicker
                   countryCode={countryCode}
                   countryFlag={countryFlag}
@@ -195,6 +167,8 @@ const EditProfile = ({ navigation }) => {
                   maxLength={10}
                 />
               </View>
+              :null
+              }
             </View>
           </View>
         </View>
@@ -216,11 +190,5 @@ const EditProfile = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  profileImage: {
-    width: moderateScale(width / 4),
-    height: moderateScale(width / 4),
-    borderRadius: moderateScale(width / 8),
-  },
-});
+
 export default EditProfile;

@@ -1,13 +1,11 @@
-import { View, Text, SafeAreaView } from "react-native";
 import React, { useEffect } from "react";
-import Routes from "./src/navigation/Routes";
-// import WrapperContainer from './src/Components/WrapperContainer'
-import { getItem, getUserData } from "./src/utils/utils";
-import actions from "./src/redux/actions";
-import store from "./src/redux/store";
-import FlashMessage from 'react-native-flash-message'
+import FlashMessage from 'react-native-flash-message';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
+import Routes from "./src/navigation/Routes";
+import actions from "./src/redux/actions";
+import store from "./src/redux/store";
+import { getItem, getUserData } from "./src/utils/utils";
 const App = () => {
   
   useEffect(() => {
@@ -20,7 +18,7 @@ const App = () => {
 
     getUserData("userData").then((res) => {
       console.log("store data app ", res);
-        actions.saveUserData(res)
+      actions.saveUserData(res)
     });
   }, []);
   return (

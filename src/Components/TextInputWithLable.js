@@ -10,6 +10,7 @@ const TextInputWithLable = ({
     inputStyle = {},
     rightText,
     onPressRight,
+    rightTextStyle,
     ...props
 }) => {
     return (
@@ -17,14 +18,15 @@ const TextInputWithLable = ({
             <View style={styles.flexView}>
                 <TextInput
                     placeholder={placeholder}
-                    style={styles.inputStyle}
+                    style={{...styles.inputStyle}}
                     placeholderTextColor={colors.white}
                     onChangeText={onChangeText}
+                    
                     {...props}
                 />
                 {rightText ? 
                 <TouchableOpacity onPress={onPressRight} activeOpacity={0.5}>
-                    <Text style={{color:colors.white, marginRight:moderateScale(16)}}>{rightText}</Text>
+                    <Text style={rightTextStyle}>{rightText}</Text>
                 </TouchableOpacity>
                 : null
                 }

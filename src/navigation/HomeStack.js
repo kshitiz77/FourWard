@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { ChangePassword, EditProfile } from '../Screens'
+import { ChangePassword, EditProfile, PostDetails } from '../Screens'
 import BottomTabNavigation from './BottomTabNavigation'
 import { createStackNavigator } from '@react-navigation/stack'
 import navigationStrings from './navigationStrings'
@@ -26,6 +26,10 @@ const HomeStack = () => {
        <Stack.Screen 
       name={navigationStrings.ADD_INFO}
       component={AddInfo}
+      />
+      <Stack.Screen 
+      name={navigationStrings.POST_DETAILS}
+      component={PostDetails}
       />
     </Stack.Navigator>
   )

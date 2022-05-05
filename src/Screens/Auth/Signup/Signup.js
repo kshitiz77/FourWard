@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
+  Platform, ScrollView, StyleSheet,
   Text,
-  View,
-  ScrollView,
+  View
 } from "react-native";
+import DeviceInfo from "react-native-device-info";
 import ButtonComp from "../../../Components/ButtonComp";
 import CountryCodePicker from "../../../Components/CountryCodePicker";
 import HeaderComp from "../../../Components/HeaderComp";
 import TextInputWithLable from "../../../Components/TextInputWithLable";
 import WrapperContainer from "../../../Components/WrapperContainer";
 import strings from "../../../constants/lang";
-import colors from "../../../styles/colors";
 import navigationStrings from "../../../navigation/navigationStrings";
 import actions from "../../../redux/actions";
-import validator from "../../../utils/validations";
-import DeviceInfo from "react-native-device-info";
+import colors from "../../../styles/colors";
 import {
   moderateScale,
   moderateScaleVertical,
-  textScale,
+  textScale
 } from "../../../styles/responsiveSize";
-import { showError, showSuccess } from "../../../utils/helperFunction";
+import { showError } from "../../../utils/helperFunction";
+import validator from "../../../utils/validations";
 export default function Signup({ navigation }) {
   const [userData, setUserData] = useState({
     email: "",
@@ -58,13 +56,10 @@ export default function Signup({ navigation }) {
   };
 
   const _onSubmitSignUpData = () => {
-    // const checkValid = isValidData();
-    // if (!checkValid) {
-    //   return;
-    // }
-
-
-
+    const checkValid = isValidData();
+    if (!checkValid) {
+      return;
+    }
     let apiData = {
       first_name: firstName,
       last_name: lastName,
@@ -155,13 +150,14 @@ export default function Signup({ navigation }) {
                 secureTextEntry={isVisible}
                 rightText={isVisible ? "Show" : "Hide"}
                 onPressRight={() => setIsVisible(!isVisible)}
-                g
+                rightTextStyle={{color:colors.white, marginRight:moderateScale(16)}}
                 onChangeText={(text) => updateState({ password: text })}
               />
               <TextInputWithLable
                 placeholder={strings.CONFIRM_PASSWORD}
                 value={confirmPassword}
                 inputStyle={{ marginVertical: moderateScaleVertical(8) }}
+                rightTextStyle={{color:colors.white, marginRight:moderateScale(16)}}
                 secureTextEntry={isVisible}
                 rightText={isVisible ? "Show" : "Hide"}
                 onPressRight={() => setIsVisible(!isVisible)}

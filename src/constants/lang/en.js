@@ -70,11 +70,14 @@ export default{
     NEW_PASSWORD_REQUIRE_SIX_CHARACTRES: 'New password require six charactres',
     NEW_INCORRECT_PASSWORD: 'New incorrect password',
     CONFIRM_PASSWORD: 'Confirm password',
+    CURRENT_PASSWORD: 'Current password',
     PASSWORD_NOT_MATCH: 'Password not match',
     MESSAGE:'Message',
     PROMO_CODE: 'Promo code',
     UID: 'UID',
     ENTER_VENDOR_NAME: 'Enter vendor name',
     VENDOR_ADDRESS: 'Vendor address',
-    
+    ENTER_LOCATION_MANUALLY:"Enter location manually",
+    SECTOR:'Sector',
+    FORGOT_PASSWORD_TITLE: 'Forgot password'
 }

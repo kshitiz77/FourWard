@@ -1,5 +1,4 @@
 import types from "../types";
-import { setUserData, removeUserData, getUserData, signupUser } from "../../utils/utils";
 const initialState = {
     userData: {},
 }
@@ -18,7 +17,7 @@ const userData = (state = initialState, action) => {
             
             return {
                 ...state?.userData,
-                userData: undefined
+                userData: null
             }
         default: return state;
     }

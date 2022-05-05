@@ -5,6 +5,7 @@ export {default as Login} from './Auth/Login/Login';
 export {default as Signup} from './Auth/Signup/Signup'
 export {default as Otp} from './Auth/Otp/Otp';
 export {default as SetPassword} from './Auth/SetPassword/SetPassword';
+export {default as ForgotPassword} from './Auth/ForgotPassword/ForgotPassword';
 
 // Main Screens
 export {default as Home} from '../Screens/Home/Home'

@@ -11,12 +11,11 @@ export async function getHeaders() {
 	console.log(loginUser, 'loginUser')
 	if (loginUser) {
 		loginUser = JSON.parse(loginUser);
-	
 		return {
 			authorization: `Bearer ${loginUser?.access_token}`,
 		};
 	}
-	return {};
+	return null;
 }
 
 

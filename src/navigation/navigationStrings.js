@@ -14,5 +14,6 @@ export default{
     CHANGE_PASSWORD: 'ChangePassword',
     SELECT_PHOTO: 'SelectPhoto',
     BOTTOM_TAB_Navigation:'BottomTabNavigation',
-    ADD_INFO:'AddInfo'
+    ADD_INFO:'AddInfo',
+    FORGOT_PASSWORD:'ForgotPassword'
 }

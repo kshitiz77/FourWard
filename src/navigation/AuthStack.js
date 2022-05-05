@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { GettingStarted, Login, Otp, SetPassword, Signup } from '../Screens'
+import { ChangePassword, ForgotPassword, GettingStarted, Login, Otp, SetPassword, Signup } from '../Screens'
 import navigationStrings from './navigationStrings'
 
 const AuthStack = (Stack) => {
@@ -27,6 +27,14 @@ const AuthStack = (Stack) => {
       <Stack.Screen 
       name={navigationStrings.SIGNUP}
       component={Signup}
+      />
+       <Stack.Screen 
+      name={navigationStrings.FORGOT_PASSWORD}
+      component={ForgotPassword}
+      />
+      <Stack.Screen 
+      name={navigationStrings.CHANGE_PASSWORD}
+      component={ChangePassword}
       />
     </Stack.Navigator>
   )
