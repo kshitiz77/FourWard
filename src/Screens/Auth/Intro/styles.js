@@ -8,15 +8,16 @@ export const styles = StyleSheet.create({
       marginHorizontal: moderateScale(23),
       borderRadius: moderateScale(9),
       paddingHorizontal:moderateScale(24),
-      marginTop:moderateScaleVertical(20)
+      marginTop:moderateScaleVertical(20),
+      // justifyContent:'space-between'
     },
     imageContainer:{ 
-      flex: 0.55 , 
+      flex: 0.65 , 
       alignItems:'center', 
       justifyContent:'center'
     },
     textTitleContainer:{ 
-      flex: 0.45 , 
+      flex: 0.35 , 
       alignItems:'center', 
       justifyContent:'center'
     },

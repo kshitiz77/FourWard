@@ -3,12 +3,17 @@ import FlashMessage from 'react-native-flash-message';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import Routes from "./src/navigation/Routes";
+import SplashScreen from "react-native-splash-screen";
 import actions from "./src/redux/actions";
 import store from "./src/redux/store";
 import { getItem, getUserData } from "./src/utils/utils";
 const App = () => {
   
   useEffect(() => {
+    setTimeout(()=>{
+      SplashScreen.hide();
+    },2000)
+
     getItem("appIntroData").then((res) => {
       console.log("intro data", res);
       if (res != null) {

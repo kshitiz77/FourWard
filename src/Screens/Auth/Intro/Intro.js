@@ -41,7 +41,7 @@ const Intro = ({navigation}) => {
         <View style={styles.imageContainer}>
           <Image source={item.image} />
         </View>
-        <View style={styles.textTitleConatiner}>
+        <View style={styles.textTitleContainer}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.text}>{item.text}</Text>
         </View>
