@@ -79,5 +79,8 @@ export default{
     VENDOR_ADDRESS: 'Vendor address',
     ENTER_LOCATION_MANUALLY:"Enter location manually",
     SECTOR:'Sector',
-    FORGOT_PASSWORD_TITLE: 'Forgot password'
+    FORGOT_PASSWORD_TITLE: 'Forgot password',
+    USER_NAME:'Iron Man',
+    PLACE:'Sector 28, Chandigarh',
+    VIEW_MAP:'View map'
 }

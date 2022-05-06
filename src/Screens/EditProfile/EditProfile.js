@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
-  Image, KeyboardAvoidingView, StyleSheet,
-  TouchableOpacity, View
+  Image,
+  KeyboardAvoidingView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useSelector } from "react-redux";
 import ButtonComp from "../../Components/ButtonComp";
@@ -12,20 +15,19 @@ import imagePath from "../../constants/imagePath";
 import strings from "../../constants/lang";
 import actions from "../../redux/actions";
 import colors from "../../styles/colors";
-import CountryCodePicker from '../../Components/CountryCodePicker'
+import CountryCodePicker from "../../Components/CountryCodePicker";
 import {
   moderateScale,
-  moderateScaleVertical, width
+  moderateScaleVertical,
+  width,
 } from "../../styles/responsiveSize";
 import { openGallery } from "../../utils/imagePickerFun";
 import { styles } from "./styles";
-
 
 const EditProfile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
   console.log("userData", userData);
   const [state, setState] = useState({
-
     profileImage: null,
     email: "",
     phone: "",
@@ -63,7 +65,6 @@ const EditProfile = ({ navigation }) => {
     }
   };
 
-
   const _submitEditProfileData = async () => {
     let formaData = new FormData();
     formaData.append("first_name", firstName);
@@ -92,9 +93,7 @@ const EditProfile = ({ navigation }) => {
 
   return (
     <WrapperContainer>
-      <View
-        style={styles.container}
-      >
+      <View style={styles.container}>
         <View>
           <HeaderComp
             showTitle={true}
@@ -149,26 +148,25 @@ const EditProfile = ({ navigation }) => {
                 inputStyle={{ marginVertical: moderateScaleVertical(16) }}
                 onChangeText={(text) => updateState({ email: text })}
               />
-              { phone ?
+              {phone ? (
                 <View style={{ flexDirection: "row" }}>
-                <CountryCodePicker
-                  countryCode={countryCode}
-                  countryFlag={countryFlag}
-                  setCountryCode={setCountryCode}
-                  setCountryFlag={setCountryFlag}
-                />
-                <View style={{ flex: 0.05 }} />
-                <TextInputWithLable
-                  value={phone}
-                  onChangeText={(text) => updateState({ phone: text })}
-                  placeholder={strings.MOBILE_NUMBER}
-                  inputStyle={{ flex: 0.63 }}
-                  keyboardType="phone-pad"
-                  maxLength={10}
-                />
-              </View>
-              :null
-              }
+                  <CountryCodePicker
+                    countryCode={countryCode}
+                    countryFlag={countryFlag}
+                    setCountryCode={setCountryCode}
+                    setCountryFlag={setCountryFlag}
+                  />
+                  <View style={{ flex: 0.05 }} />
+                  <TextInputWithLable
+                    value={phone}
+                    onChangeText={(text) => updateState({ phone: text })}
+                    placeholder={strings.MOBILE_NUMBER}
+                    inputStyle={{ flex: 0.63 }}
+                    keyboardType="phone-pad"
+                    maxLength={10}
+                  />
+                </View>
+              ) : null}
             </View>
           </View>
         </View>
@@ -189,6 +187,5 @@ const EditProfile = ({ navigation }) => {
     </WrapperContainer>
   );
 };
-
 
 export default EditProfile;

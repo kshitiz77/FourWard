@@ -20,4 +20,5 @@ export default {
   editIcon: require("../assets/images/ic_edit.png"),
   ironMan: require("../assets/images/ironMan.jpg"),
   plusIcon: require("../assets/images/ic_plus.png"),
+  crossIcon: require("../assets/images/ic_cross.png")
 };
