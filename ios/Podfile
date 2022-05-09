@@ -20,6 +20,8 @@ target 'FourWard' do
   )
 
 
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
   target 'FourWardTests' do
     inherit! :complete
     # Pods for testing

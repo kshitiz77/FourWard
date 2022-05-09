@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
 import HeaderComp from "../../Components/HeaderComp";
 import strings from "../../constants/lang";
@@ -22,9 +22,23 @@ import ButtonComp from "../../Components/ButtonComp";
 import TextInputWithLable from "../../Components/TextInputWithLable";
 import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
+import { openGallery } from "../../utils/imagePickerFun";
 
-const AddInfo = ({ navigation }) => {
- 
+const AddInfo = ({ navigation, route }) => {
+ const photo = route?.params?.photo
+ const [selectPhotos, setSelectPhotos] = useState([])
+ console.log(selectPhotos)
+
+ const _selectProfileImage = async () => {
+  try {
+    const res = await openGallery();
+    console.log("image res", res);
+    setSelectPhotos(selectPhotos.concat(res.path))
+  } catch (error) {
+    console.log("error raised", error);
+  }
+};
+
   return (
     <WrapperContainer>
       <View
@@ -37,30 +51,42 @@ const AddInfo = ({ navigation }) => {
             // onPressBack={() => navigation.goBack()}
           />
           <View
-            style={{
-              marginTop: moderateScaleVertical(8),
-              flexDirection: "row",
-            }}
+            style={styles.addImageContainer}
           >
-            <Image
-              source={imagePath.ironMan}
-              style={{
-                width: moderateScale(width / 5.5),
-                height: moderateScale(width / 5.5),
-                borderRadius: moderateScale(8),
-              }}
-              resizeMode="contain"
-            />
+            {
+              photo ?
+              <Image
+                source={{uri:photo}}
+                style={styles.selectImgStyle}
+                resizeMode="contain"
+              />
+                : null
+            }
+            {
+              selectPhotos ?
+              selectPhotos.map((element,index)=>{
+                return(
+                  <Image
+                source={{uri:element}}
+                style={styles.selectImgStyle}
+                resizeMode="contain"
+              />
+                )
+              })
+              :null
+            }
             <TouchableOpacity
               style={styles.addmorePostStyle}
+              onPress={_selectProfileImage}
             >
               <Image source={imagePath.plusIcon} />
             </TouchableOpacity>
           </View>
           <TextInputWithLable
             multiline={true}
-            numberOfLines={10}
+            // numberOfLines={10}
             inputStyle={styles.descriptionInputStyle}
+            // textAlign={'center'}
             placeholder={strings.WRITE_DESCRIPTION_HERE}
           />
           <TextInputWithLable
@@ -76,7 +102,7 @@ const AddInfo = ({ navigation }) => {
             <ButtonComp
               btnText={strings.POST}
               btnStyle={{ backgroundColor: colors.btnOrange }}
-              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+              btnTextStyle={styles.btnStyle}
               // onPress={}
             />
           </View>

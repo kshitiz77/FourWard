@@ -82,5 +82,8 @@ export default{
     FORGOT_PASSWORD_TITLE: 'Forgot password',
     USER_NAME:'Iron Man',
     PLACE:'Sector 28, Chandigarh',
-    VIEW_MAP:'View map'
+    VIEW_MAP:'View map',
+    SELECT_PHOTO:'Select photo',
+    GALLERY:'Gallery',
+    RECENTS:'Recents'
 }

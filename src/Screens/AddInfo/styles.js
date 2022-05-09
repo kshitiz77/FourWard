@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import colors from "../../styles/colors";
 import {
   height,
   moderateScale,
@@ -6,22 +7,37 @@ import {
   textScale,
   width,
 } from "../../styles/responsiveSize";
+
 export const styles = StyleSheet.create({
   container: {
     marginHorizontal: moderateScale(24),
     justifyContent: "space-between",
     flex: 1,
   },
-  forgotPasswordTitle:{ 
-      marginTop: moderateScaleVertical(6) 
-    },
-//   descriptionInputStyle: {
-//     height: moderateScale(width / 3),
-//     fontSize: textScale(14),
-//     paddingTop: moderateScaleVertical(8),
-//     paddingHorizontal: moderateScale(16),
-//     marginVertical: moderateScaleVertical(16),
-//   },
+  forgotPasswordTitle: {
+    marginTop: moderateScaleVertical(6),
+  },
+  addImageContainer: {
+    marginTop: moderateScaleVertical(8),
+    flexDirection: "row",
+    flexWrap:'wrap'
+  },
+  selectImgStyle: {
+    width: moderateScale(width / 5.5),
+    height: moderateScale(width / 5.5),
+    borderRadius: moderateScale(8),
+    marginLeft:moderateScale(8),
+    marginVertical:moderateScaleVertical(8)
+    // backgroundColor:colors.mediumDarkGray
+  },
+  descriptionInputStyle: {
+    height: moderateScale(width / 3),
+    fontSize: textScale(14),
+    paddingTop: moderateScaleVertical(8),
+    paddingHorizontal: moderateScale(16),
+    marginVertical: moderateScaleVertical(16),
+    // alignSelf:'flex-start'
+  },
   addmorePostStyle: {
     alignItems: "center",
     justifyContent: "center",
@@ -29,6 +45,11 @@ export const styles = StyleSheet.create({
     height: moderateScale(width / 5.5),
     backgroundColor: colors.mediumDarkGray,
     borderRadius: moderateScale(8),
-    marginLeft: moderateScale(16),
+    marginLeft:moderateScale(8),
+    marginVertical:moderateScaleVertical(8)
   },
+  btnStyle:{ 
+    color: colors.white, 
+    textTransform: "uppercase" 
+  }
 });

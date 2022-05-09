@@ -20,22 +20,10 @@ const Home = ({navigation}) => {
     console.log(item)
     navigation.navigate(navigationStrings.POST_DETAILS, {postData:item})
   };
-  return (
-    <WrapperContainer>
-      <View style={{ marginHorizontal: moderateScale(24) }}>
-        <View style={styles.headerStyle}>
-          <Image source={imagePath.homeLogo} />
-          <Image source={imagePath.locationIcon} />
-        </View>
-        <View>
-          <FlatList
-            data={posts}
-            contentContainerStyle={{
-              paddingBottom: moderateScaleVertical(187),
-            }}
-            showsVerticalScrollIndicator={false}
-            renderItem={(element, index) => (
-              <View key={index} style={styles.flatlistContainer}>
+
+  const renderItem = (element, index) =>{
+    return(
+    <View key={index} style={styles.flatlistContainer}>
                 <Card
                   userImage={element.item.userImage}
                   userName={element.item.userName}
@@ -52,7 +40,23 @@ const Home = ({navigation}) => {
                   }
                 />
               </View>
-            )}
+    )
+  }
+  return (
+    <WrapperContainer>
+      <View style={{ marginHorizontal: moderateScale(24) }}>
+        <View style={styles.headerStyle}>
+          <Image source={imagePath.homeLogo} />
+          <Image source={imagePath.locationIcon} />
+        </View>
+        <View>
+          <FlatList
+            data={posts}
+            contentContainerStyle={{
+              paddingBottom: moderateScaleVertical(187),
+            }}
+            showsVerticalScrollIndicator={false}
+            renderItem={(element, index) => renderItem(element, index)}
             keyExtractor={(item) => item.id}
           />
         </View>
