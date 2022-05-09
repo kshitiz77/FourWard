@@ -5,7 +5,6 @@ export const openGallery = (data) => {
         ImageCropPicker.openPicker({
             width: 400,
             height: 400,
-            cropperCircleOverlay: true,
             cropping: true,
           }).then((res) => {
             resolve(res)
