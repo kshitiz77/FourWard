@@ -13,35 +13,31 @@ import {
   textScale,
 } from "../../styles/responsiveSize";
 import PostDetails from "../PostDetails/PostDetails";
-import navigationStrings from '../../navigation/navigationStrings'
+import navigationStrings from "../../navigation/navigationStrings";
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const _postDetails = (item) => {
-    console.log(item)
-    navigation.navigate(navigationStrings.POST_DETAILS, {postData:item})
+    console.log(item);
+    navigation.navigate(navigationStrings.POST_DETAILS, { postData: item });
   };
 
-  const renderItem = (element, index) =>{
-    return(
-    <View key={index} style={styles.flatlistContainer}>
-                <Card
-                  userImage={element.item.userImage}
-                  userName={element.item.userName}
-                  place={element.item.place}
-                  postImage={element.item.postImage}
-                  caption={element.item.caption}
-                  postTime={element.item.postTime}
-                  commentCount={element.item.commentCount}
-                  likes={element.item.likes}
-                  onPress={() =>
-                    _postDetails(
-                      element.item
-                    )
-                  }
-                />
-              </View>
-    )
-  }
+  const renderItem = (element, index) => {
+    return (
+      <View key={index} style={styles.flatlistContainer}>
+        <Card
+          userImage={element.item.userImage}
+          userName={element.item.userName}
+          place={element.item.place}
+          postImage={element.item.postImage}
+          caption={element.item.caption}
+          postTime={element.item.postTime}
+          commentCount={element.item.commentCount}
+          likes={element.item.likes}
+          onPress={() => _postDetails(element.item)}
+        />
+      </View>
+    );
+  };
   return (
     <WrapperContainer>
       <View style={{ marginHorizontal: moderateScale(24) }}>

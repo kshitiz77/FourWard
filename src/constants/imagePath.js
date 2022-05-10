@@ -21,5 +21,7 @@ export default {
   ironMan: require("../assets/images/ironMan.jpg"),
   plusIcon: require("../assets/images/ic_plus.png"),
   crossIcon: require("../assets/images/ic_cross.png"),
-  cameraIcon: require("../assets/images/cameraIcon.png")
+  cameraIcon: require("../assets/images/cameraIcon.png"),
+  removeIcon: require("../assets/images/remove.png"),
+  checkIcon: require("../assets/images/check.png")
 };

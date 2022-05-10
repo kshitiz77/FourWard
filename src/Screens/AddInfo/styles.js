@@ -20,14 +20,15 @@ export const styles = StyleSheet.create({
   addImageContainer: {
     marginTop: moderateScaleVertical(8),
     flexDirection: "row",
-    flexWrap:'wrap'
+    flexWrap:'wrap',
+    
   },
   selectImgStyle: {
     width: moderateScale(width / 5.5),
     height: moderateScale(width / 5.5),
     borderRadius: moderateScale(8),
-    marginLeft:moderateScale(8),
-    marginVertical:moderateScaleVertical(8)
+    marginLeft:moderateScale(12),
+    marginBottom:moderateScaleVertical(12),
     // backgroundColor:colors.mediumDarkGray
   },
   descriptionInputStyle: {
@@ -45,11 +46,15 @@ export const styles = StyleSheet.create({
     height: moderateScale(width / 5.5),
     backgroundColor: colors.mediumDarkGray,
     borderRadius: moderateScale(8),
-    marginLeft:moderateScale(8),
-    marginVertical:moderateScaleVertical(8)
+    marginLeft:moderateScale(12)
   },
   btnStyle:{ 
     color: colors.white, 
     textTransform: "uppercase" 
+  },
+  removeBtnStyle:{ 
+    position: "absolute", 
+    top: -2, 
+    right: 4 
   }
 });

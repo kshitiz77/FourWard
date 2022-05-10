@@ -9,7 +9,10 @@ import { moderateScale, textScale } from '../styles/responsiveSize';
 const HeaderComp = ({
     onPressBack,
     showTitle,
-    title
+    title,
+    rightIcon,
+    showRightIcon,
+    onPress
   }) => {
     const navigation = useNavigation();
   
@@ -18,13 +21,20 @@ const HeaderComp = ({
     }
     return (
       <View style={styles.container}>
-  
+        <View style={{flexDirection:'row', alignItems:'center'}}>
         <TouchableOpacity onPress={onPressBack ? onPressBack : () => goBack()}>
           <Image source={imagePath.back} />
 
         </TouchableOpacity>
         {
           showTitle ? <Text style={{color:colors.white, fontSize:textScale(16), marginLeft:moderateScale(16)}}>{title}</Text> : null
+        }
+        </View>
+        {
+          showRightIcon ? <TouchableOpacity onPress={onPress}>
+            <Image source={rightIcon}/>
+          </TouchableOpacity>
+          : null
         }
       </View>
     );
@@ -36,6 +46,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         height: moderateScale(42),
+        justifyContent:'space-between'
     },
 });
 

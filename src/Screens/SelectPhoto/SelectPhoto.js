@@ -23,8 +23,11 @@ import strings from "../../constants/lang";
 import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
 import navigationStrings from "../../navigation/navigationStrings";
+import { openCamera } from "../../utils/imagePickerFun";
+import HeaderComp from "../../Components/HeaderComp";
 const SelectPhoto = ({ navigation }) => {
   const [state, setState] = useState();
+  const [selectImage, setSelectImage] = useState()
   useEffect(() => {
     _getMediaFromGalary();
     console.log(state);
@@ -54,24 +57,39 @@ const SelectPhoto = ({ navigation }) => {
     })
       .then((r) => {
         setState({ photos: r.edges });
-        console.log(r.edges);
+        // setSelectImage(r.)
+        console.log(r.edges[0].node.image.uri, "selectImage");
+        setSelectImage(r.edges[0].node.image.uri)
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const _goToAddInfo = (element) => {
+  const _goToAddInfo = () => {
     navigation.navigate(navigationStrings.ADD_INFO, {
-      photo: element.item.node.image.uri,
+      photo: selectImage,
     });
   };
 
+  const _selectImgFun = (element) =>{
+    setSelectImage(element.item.node.image.uri)
+  }
+
+  const _selectImageFromCamera = async() =>{
+    try {
+      const res = await openCamera();
+      console.log("image res", res);
+      setSelectImage(res.path)
+    } catch (error) {
+      console.log("error raised", error);
+    }
+  }
   const renderItem = (element, index) => {
-    console.log(element);
+    // console.log(element);
     return (
       <>
-        <TouchableOpacity onPress={() => _goToAddInfo(element)}>
+        <TouchableOpacity onPress={() => _selectImgFun(element)}>
           <Image
             key={index}
             style={{
@@ -91,7 +109,21 @@ const SelectPhoto = ({ navigation }) => {
   return (
     <WrapperContainer>
       {/* <ScrollView> */}
-      <Text style={styles.selectPhotoText}>{strings.SELECT_PHOTO}</Text>
+      <View style={{marginHorizontal:moderateScale(24)}}>
+      <HeaderComp
+            showTitle={true}
+            title={strings.SELECT_PHOTO}
+            onPressBack={() => navigation.goBack()}
+            rightIcon={imagePath.checkIcon}
+            showRightIcon={true}
+            onPress={_goToAddInfo}
+          />
+      </View>
+      <View style={{flex:1}}>
+        <View style={{flex:0.4}}>
+          <Image source={{uri:selectImage}} style={{ height:moderateScale(width/1.2)}}/>
+        </View>
+        <View style={{flex:0.6}}>
       <View style={styles.galleryHeaderStyle}>
         <Text style={styles.galleryHeaderLeftTextStyle}>{strings.GALLERY}</Text>
         <View style={styles.galleryHeaderRightContainer}>
@@ -112,10 +144,12 @@ const SelectPhoto = ({ navigation }) => {
         ListFooterComponent={<View style={{ height: moderateScale(100) }} />}
       />
       {/* </ScrollView> */}
-      <TouchableOpacity style={styles.cameraIconContainer}>
+      <TouchableOpacity style={styles.cameraIconContainer} onPress={_selectImageFromCamera}>
 
         <Image source={imagePath.cameraIcon} style={styles.cameraIconStyle}/>
       </TouchableOpacity>
+      </View>
+      </View>
     </WrapperContainer>
   );
 };
