@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../styles/colors';
+import fontFamily from '../../../styles/fontFamily';
 import { moderateScale, moderateScaleVertical, textScale } from '../../../styles/responsiveSize';
 
 export const styles = StyleSheet.create({
@@ -12,11 +13,13 @@ export const styles = StyleSheet.create({
     welcomeBackStyle: {
       fontSize: textScale(24),
       color: colors.white,
+      fontFamily:fontFamily.mulishRegular
     },
     welcomeTextStyle: {
       fontSize: textScale(15),
       color: colors.textGray,
       marginTop: moderateScaleVertical(6),
+      fontFamily:fontFamily.mulishRegular
     },
     countryCodePicker: {
       flex: 0.3,
@@ -28,7 +31,8 @@ export const styles = StyleSheet.create({
     },
     buttonStyle:{ 
       color: colors.white, 
-      textTransform: "uppercase" 
+      textTransform: "uppercase",
+      fontFamily:fontFamily.mulishBold 
     },
     rightTextStyle:{
       color:colors.white, 

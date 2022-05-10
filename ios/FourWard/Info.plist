@@ -68,12 +68,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to access your camera to upload photo and set profile picture</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to access your photo gallery to upload photo and set profile picture</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-  
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -86,5 +85,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Mulish-Bold.otf</string>
+		<string>Mulish-Medium.otf</string>
+		<string>Mulish-Regular.otf</string>
+		<string>Mulish-SemiBold.otf</string>
+	</array>
 </dict>
 </plist>

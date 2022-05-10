@@ -56,8 +56,7 @@ const SelectPhoto = ({ navigation }) => {
       assetType: "Photos",
     })
       .then((r) => {
-        setState({ photos: r.edges });
-        // setSelectImage(r.)
+        setState({ photos: r.edges })
         console.log(r.edges[0].node.image.uri, "selectImage");
         setSelectImage(r.edges[0].node.image.uri)
       })
@@ -80,7 +79,9 @@ const SelectPhoto = ({ navigation }) => {
     try {
       const res = await openCamera();
       console.log("image res", res);
-      setSelectImage(res.path)
+      navigation.navigate(navigationStrings.ADD_INFO, {
+        photo: res.path,
+      });
     } catch (error) {
       console.log("error raised", error);
     }

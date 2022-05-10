@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
     height: moderateScale(width / 3),
     fontSize: textScale(14),
     paddingTop: moderateScaleVertical(8),
-    paddingHorizontal: moderateScale(16),
     marginVertical: moderateScaleVertical(16),
     // alignSelf:'flex-start'
   },
@@ -54,7 +53,7 @@ export const styles = StyleSheet.create({
   },
   removeBtnStyle:{ 
     position: "absolute", 
-    top: -2, 
-    right: 4 
+    top: -8, 
+    right: -5
   }
 });

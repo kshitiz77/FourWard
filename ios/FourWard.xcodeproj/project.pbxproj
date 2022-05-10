@@ -16,6 +16,10 @@
 		C9A8CD678E31D1D434A95364 /* libPods-FourWard-FourWardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F058B40B537D1AB1A7D04AE2 /* libPods-FourWard-FourWardTests.a */; };
 		F8430F6C281F9F8E00A104B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8430F6B281F9F8E00A104B3 /* GoogleService-Info.plist */; };
 		F8D9A9A52825206B0053A912 /* react-native-splash-screen in Resources */ = {isa = PBXBuildFile; fileRef = F8D9A9A42825206B0053A912 /* react-native-splash-screen */; };
+		4B6275D98F9842289C8786FA /* Mulish-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */; };
+		28EB0EDADEED45CEA18BFD7C /* Mulish-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABF81539044F42F19F68E59D /* Mulish-Medium.otf */; };
+		5DF203A074C24033BC80535C /* Mulish-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */; };
+		AFA15B69333C40E6AFF302C8 /* Mulish-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		F058B40B537D1AB1A7D04AE2 /* libPods-FourWard-FourWardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FourWard-FourWardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8430F6B281F9F8E00A104B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D9A9A42825206B0053A912 /* react-native-splash-screen */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "react-native-splash-screen"; path = "../node_modules/react-native-splash-screen"; sourceTree = "<group>"; };
+		6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */ = {isa = PBXFileReference; name = "Mulish-Bold.otf"; path = "../src/assets/fonts/Mulish-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ABF81539044F42F19F68E59D /* Mulish-Medium.otf */ = {isa = PBXFileReference; name = "Mulish-Medium.otf"; path = "../src/assets/fonts/Mulish-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */ = {isa = PBXFileReference; name = "Mulish-Regular.otf"; path = "../src/assets/fonts/Mulish-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */ = {isa = PBXFileReference; name = "Mulish-SemiBold.otf"; path = "../src/assets/fonts/Mulish-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +136,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				C87F6A1B89FD442EAC5D105F /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -153,6 +162,18 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		C87F6A1B89FD442EAC5D105F /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */,
+				ABF81539044F42F19F68E59D /* Mulish-Medium.otf */,
+				7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */,
+				C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -253,6 +274,10 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				F8D9A9A52825206B0053A912 /* react-native-splash-screen in Resources */,
 				F8430F6C281F9F8E00A104B3 /* GoogleService-Info.plist in Resources */,
+				4B6275D98F9842289C8786FA /* Mulish-Bold.otf in Resources */,
+				28EB0EDADEED45CEA18BFD7C /* Mulish-Medium.otf in Resources */,
+				5DF203A074C24033BC80535C /* Mulish-Regular.otf in Resources */,
+				AFA15B69333C40E6AFF302C8 /* Mulish-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

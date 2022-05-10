@@ -15,6 +15,7 @@ import strings from "../../../constants/lang";
 import navigationStrings from "../../../navigation/navigationStrings";
 import actions from "../../../redux/actions";
 import colors from "../../../styles/colors";
+import fontFamily from "../../../styles/fontFamily";
 import {
   moderateScale,
   moderateScaleVertical,
@@ -174,7 +175,7 @@ export default function Signup({ navigation }) {
             <ButtonComp
               btnText={strings.NEXT}
               btnStyle={{ backgroundColor: colors.btnOrange }}
-              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+              btnTextStyle={styles.btnTextStyle}
               onPress={_onSubmitSignUpData}
             />
           </View>
@@ -193,11 +194,13 @@ const styles = StyleSheet.create({
   welcomeBackStyle: {
     fontSize: textScale(24),
     color: colors.white,
+    fontFamily:fontFamily.mulishSemiBold
   },
   welcomeTextStyle: {
     fontSize: textScale(15),
     color: colors.textGray,
     marginTop: moderateScaleVertical(6),
+    fontFamily:fontFamily.mulishRegular
   },
   countryCodePicker: {
     flex: 0.3,
@@ -207,4 +210,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: colors.mediumDarkGray,
   },
+  btnTextStyle:{ 
+    color: colors.white, 
+    textTransform: "uppercase",
+    fontFamily:fontFamily.mulishBold
+  }
 });

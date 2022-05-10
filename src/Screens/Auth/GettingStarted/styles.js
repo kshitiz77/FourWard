@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "../../../styles/colors";
+import fontFamily from "../../../styles/fontFamily";
 import {
   moderateScale,
   height,
@@ -7,7 +8,6 @@ import {
   textScale,
   moderateScaleVertical,
 } from "../../../styles/responsiveSize";
-import fontFamily from '../../../styles/fontFamily'
 
 export const styles = StyleSheet.create({
   container: {
@@ -32,15 +32,18 @@ export const styles = StyleSheet.create({
     fontSize: textScale(13),
     color: colors.textLightGray,
     textAlign: "center",
-    // fontFamily:fontFamily.barlowBold
+    fontFamily:fontFamily.mulishRegular
   },
   phoneLoginBtn: {
     backgroundColor: colors.btnOrange,
     marginVertical: moderateScaleVertical(14),
-    fontSize: textScale(14),
+    // fontSize: textScale(14),
+    fontFamily:fontFamily.mulishRegular,
     color: colors.white,
   },
   phoneLoginText: {
+    fontSize: textScale(14),
+    fontFamily:fontFamily.mulishBold,
     color: colors.white,
   },
   orTextStyle: {
@@ -53,6 +56,7 @@ export const styles = StyleSheet.create({
     marginVertical: moderateScaleVertical(14),
   },
   socialbtnText: {
+    fontFamily:fontFamily.mulishBold,
     color: colors.black,
   },
   bottomView: {
@@ -63,11 +67,11 @@ export const styles = StyleSheet.create({
   newHereText: {
     color: colors.white,
     fontSize: textScale(14),
-    fontWeight: "bold",
+    fontFamily:fontFamily.mulishSemiBold
   },
   signupBtnStyle: {
     color: colors.linkBlue,
     fontSize: textScale(14),
-    fontWeight: "bold",
+    fontFamily:fontFamily.mulishSemiBold
   },
 });

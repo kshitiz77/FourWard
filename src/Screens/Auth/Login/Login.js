@@ -12,6 +12,7 @@ import strings from "../../../constants/lang";
 import navigationStrings from "../../../navigation/navigationStrings";
 import actions from "../../../redux/actions";
 import colors from "../../../styles/colors";
+import fontFamily from "../../../styles/fontFamily";
 import {
   moderateScaleVertical
 } from "../../../styles/responsiveSize";
@@ -22,8 +23,8 @@ import { styles } from "./styles";
 const Login = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState();
   const [state, setState] = useState({
-    phoneNumber: "",
-    password: "",
+    phoneNumber: "1234567890",
+    password: "123654",
   });
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
@@ -113,14 +114,14 @@ const Login = ({ navigation }) => {
             <TouchableOpacity
               onPress={() => navigation.navigate(navigationStrings.OTP)}
             >
-              <Text style={{ color: colors.white }}>{strings.USE_OTP}</Text>
+              <Text style={{ color: colors.white, fontFamily:fontFamily.mulishRegular }}>{strings.USE_OTP}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate(navigationStrings.FORGOT_PASSWORD)
               }
             >
-              <Text style={{ color: colors.linkSkyBlue }}>
+              <Text style={{ color: colors.linkSkyBlue, fontFamily:fontFamily.mulishRegular}}>
                 {strings.FORGOT_PASSWORD}
               </Text>
             </TouchableOpacity>

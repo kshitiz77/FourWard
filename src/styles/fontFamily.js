@@ -1,6 +1,6 @@
 export default{
-    barlowBold:'Barlow-Bold',
-    barlowMedium:'Barlow-Medium',
-    barlowRegular:'Barlow-Regular',
-    barlowSemiBold:'Barlow-SemiBold',
+    mulishBold:'Mulish-Bold',
+    mulishMedium:'Mulish-Medium',
+    mulishRegular:'Mulish-Regular',
+    mulishSemiBold:'Mulish-SemiBold',
 }

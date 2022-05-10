@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import colors from "../styles/colors";
+import fontFamily from "../styles/fontFamily";
 import { height, moderateScale, width } from "../styles/responsiveSize";
 
 const ButtonComp = ({
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   btnTextStyle: {
+    fontFamily:fontFamily.mulishBold,
     fontSize: moderateScale(14),
-    fontWeight: "bold",
   },
 });
 

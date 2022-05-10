@@ -11,6 +11,7 @@ export const CHECK_SOCIAL_ID = getApiUrl("/check_social_id")
 export const EDIT_PROFILE = getApiUrl("/edit_profile")
 export const FORGOT_PASSWORD = getApiUrl("/forgot_password")
 export const OTP = getApiUrl("/verify_otp")
+export const POST_SEND = getApiUrl("/post_send")
 
 
 

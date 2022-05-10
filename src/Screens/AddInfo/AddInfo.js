@@ -5,9 +5,9 @@ import {
   KeyboardAvoidingView,
   Image,
   TouchableOpacity,
-  Alert
+  Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
 import HeaderComp from "../../Components/HeaderComp";
 import strings from "../../constants/lang";
@@ -23,72 +23,115 @@ import ButtonComp from "../../Components/ButtonComp";
 import TextInputWithLable from "../../Components/TextInputWithLable";
 import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
-import { openGallery } from "../../utils/imagePickerFun";
-import { openCamera } from "react-native-image-crop-picker";
+import { openGallery, openCamera } from "../../utils/imagePickerFun";
+import actions from "../../redux/actions";
 
 const AddInfo = ({ navigation, route }) => {
-  const photo = route?.params?.photo;
-  const [selectPhotos, setSelectPhotos] = useState([]);
+  let photo = route?.params?.photo;
+  const [selectPhotos, setSelectPhotos] = useState([photo]);
   const [state, setState] = useState({
-    description: '',
-    location:''
-  })
+    description: "",
+    location: "",
+    imageType: 'image/jpeg',
+  });
 
+  const { description, location, imageType } = state;
+  const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
-  const updateState = (data) => setState((state)=> ({...state, ...data}))
-
-  const _selectImage = () => {
-    Alert.alert(
-      "Select photo",
-      [
-        {
-          text: "Open gellery",
-          onPress: async() =>{  try {
-              const res = await openGallery();
-              console.log("image res", res);
-              setSelectPhotos(selectPhotos.concat(res.path));
-            } catch (error) {
-              console.log("error raised", error);
-            }
-          }
-        },
-        {
-          text: "Open camera",
-          onPress: async() =>{  try {
-              const res = await openCamera();
-              console.log("image res", res);
-              setSelectPhotos(selectPhotos.concat(res.path));
-            } catch (error) {
-              console.log("error raised", error);
-            }
-          }
-        },
-      ],
-    )
-    // try {
-    //   const res = await openGallery();
-    //   console.log("image res", res);
-    //   setSelectPhotos(selectPhotos.concat(res.path));
-    // } catch (error) {
-    //   console.log("error raised", error);
-    // }
+  const _selectPhoto = async () => {
+    try {
+      const res = await openGallery();
+      console.log("image res", res);
+      updateState({
+        imageType: res?.mime,
+      });
+      setSelectPhotos(selectPhotos.concat(res.path));
+    } catch (error) {
+      console.log("error raised", error);
+    }
   };
 
-  const _removeImage = (index) =>{
-    console.log(index)
+  const _openCamera = async () => {
+    try {
+      const res = await openCamera();
+      console.log("image res", res);
+      updateState({
+        imageType: res?.mime,
+      });
+      setSelectPhotos(selectPhotos.concat(res.path));
+    } catch (error) {
+      console.log("error raised", error);
+    }
+  };
+  const _selectImage = () => {
+    if (selectPhotos.length > 3) {
+      return alert("You can't upload max five image");
+    }
+    Alert.alert("Select photo ", "Select Photo ", [
+      {
+        text: "Open gellery",
+        onPress: () => _selectPhoto(),
+      },
+      {
+        text: "Open camera",
+        onPress: () => _openCamera(),
+      },
+      {
+        text: "Cancel",
+        // style: "cancel",
+      },
+    ]);
+  };
+
+  const _removeImage = (index) => {
+    console.log(index);
     const newArr = [...selectPhotos];
-    if(index >= 0){
+    if (index >= 0) {
       newArr.splice(index, 1);
-    }else{
+    } else {
       console.log("Image does not exit");
     }
 
-    setSelectPhotos(newArr)
-  }
+    setSelectPhotos(newArr);
+  };
 
-  const _submitPost = () =>{
-    console.log(state, "post details")
-  }
+  const _submitPost = async () => {
+    console.log(selectPhotos, "selectPhoto >>>>>>");
+    let formaData = new FormData();
+    formaData.append("description", description);
+    formaData.append("location_name", location);
+    formaData.append("latitude", 30.7333);
+    formaData.append("longitude", 76.7794);
+    formaData.append("type", 1);
+    if (selectPhotos?.length) {
+      selectPhotos.map((i, inx) => {
+        formaData.append("images[]", {
+          uri: i,
+          name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+          type: imageType,
+        });
+      });
+    }
+    // formaData.append("image", {
+    //   uri: selectPhotos,
+    //   name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+    //   type: imageType,
+    // });
+
+    console.log(formaData, "formaData");
+
+    actions
+      .postSend(formaData, { "Content-Type": "multipart/form-data" })
+      .then((res) => {
+        console.log("editProfile api res_+++++", res);
+        alert(res?.message);
+        navigation.goBack();
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        alert(err?.message);
+      });
+  };
   return (
     <WrapperContainer>
       <View style={styles.container}>
@@ -96,16 +139,9 @@ const AddInfo = ({ navigation, route }) => {
           <HeaderComp
             showTitle={true}
             title={strings.ADD_INFO}
-            // onPressBack={() => navigation.goBack()}
+            onPressBack={() => navigation.goBack()}
           />
           <View style={styles.addImageContainer}>
-            {photo ? (
-              <Image
-                source={{ uri: photo }}
-                style={styles.selectImgStyle}
-                resizeMode="cover"
-              />
-            ) : null}
             {selectPhotos
               ? selectPhotos.map((element, index) => {
                   return (
@@ -117,7 +153,7 @@ const AddInfo = ({ navigation, route }) => {
                       />
                       <TouchableOpacity
                         style={styles.removeBtnStyle}
-                        onPress={() =>_removeImage(index)}
+                        onPress={() => _removeImage(index)}
                       >
                         <Image
                           source={imagePath.removeIcon}
@@ -147,9 +183,9 @@ const AddInfo = ({ navigation, route }) => {
             onChangeText={(text) => updateState({ description: text })}
           />
           <TextInputWithLable
-            inputStyle={{ paddingHorizontal: moderateScale(16) }}
             placeholder={strings.ADD_LOCATION}
             onChangeText={(text) => updateState({ location: text })}
+            dataDetectorTypes="address"
           />
         </View>
         <KeyboardAvoidingView
