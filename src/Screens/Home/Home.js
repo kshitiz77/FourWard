@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import Card from "../../Components/Card";
 import WrapperContainer from "../../Components/WrapperContainer";
@@ -14,8 +14,10 @@ import {
 } from "../../styles/responsiveSize";
 import PostDetails from "../PostDetails/PostDetails";
 import navigationStrings from "../../navigation/navigationStrings";
+import actions from "../../redux/actions";
 
 const Home = ({ navigation }) => {
+  const [post, setPost] = useState()
   const _postDetails = (item) => {
     console.log(item);
     navigation.navigate(navigationStrings.POST_DETAILS, { postData: item });
@@ -38,6 +40,13 @@ const Home = ({ navigation }) => {
       </View>
     );
   };
+
+  useEffect(()=>{
+    actions.getPost().then((res)=>{
+      console.log(res.data, "getPost")
+      // setPost(res.data)
+    })
+  }, [])
   return (
     <WrapperContainer>
       <View style={{ marginHorizontal: moderateScale(24) }}>
@@ -47,7 +56,7 @@ const Home = ({ navigation }) => {
         </View>
         <View>
           <FlatList
-            data={posts}
+            data={post}
             contentContainerStyle={{
               paddingBottom: moderateScaleVertical(187),
             }}
