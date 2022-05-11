@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "../../../styles/colors";
+import fontFamily from "../../../styles/fontFamily";
 import {
     moderateScale,
     moderateScaleVertical,
@@ -16,11 +17,13 @@ export const styles = StyleSheet.create({
   welcomeBackStyle: {
     fontSize: textScale(24),
     color: colors.white,
+    fontFamily:fontFamily.mulishSemiBold
   },
   welcomeTextStyle: {
     fontSize: textScale(15),
     color: colors.linkBlue,
     marginTop: moderateScaleVertical(8),
+    fontFamily:fontFamily.mulishRegular
   },
   inputContainerStyle: {
     flexDirection: "row",
@@ -30,6 +33,7 @@ export const styles = StyleSheet.create({
     marginBottom: moderateScaleVertical(24),
     fontSize: textScale(15),
     color: colors.white,
+    fontFamily:fontFamily.mulishRegular,
   },
   cellStyle: {
     color: "white",
@@ -47,9 +51,11 @@ export const styles = StyleSheet.create({
   resendBtn: {
     color: colors.darkRed,
     fontSize: textScale(14),
+    fontFamily: fontFamily.mulishRegular
   },
   btnTextStyle: {
     color: colors.white,
     textTransform: "uppercase",
+    fontFamily: fontFamily.mulishBold
   },
 });

@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native'
+import colors from '../../styles/colors';
+import fontFamily from '../../styles/fontFamily';
 import { moderateScale, moderateScaleVertical, width, height } from '../../styles/responsiveSize';
 export const styles = StyleSheet.create({
     container:{
@@ -17,5 +19,10 @@ export const styles = StyleSheet.create({
       alignSelf: "flex-end",
       marginTop: moderateScaleVertical(-15),
       marginLeft: moderateScale(40),
+    },
+    btnTextStyle:{ 
+      color: colors.white, 
+      textTransform: "uppercase" ,
+      fontFamily:fontFamily.mulishBold
     }
   });

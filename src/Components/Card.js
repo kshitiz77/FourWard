@@ -4,6 +4,7 @@ import { height, moderateScale, moderateScaleVertical, textScale, width } from "
 import colors from "../styles/colors";
 import imagePath from "../constants/imagePath";
 import strings from "../constants/lang";
+import fontFamily from "../styles/fontFamily";
 
 const Card = ({
   userImage,
@@ -22,20 +23,17 @@ const Card = ({
           <Image source={userImage} style={styles.userImage} />
         </View>
         <View style={styles.centerHeaderText}>
-          <Text style={{ color: colors.white, fontSize: textScale(16) }}>
+          <Text style={styles.userNameText}>
             {userName}
           </Text>
           <Text
-            style={{
-              color: colors.textMediumGray,
-              fontSize: textScale(13),
-            }}
+            style={styles.placeName}
           >
             {place}
           </Text>
         </View>
         <TouchableOpacity
-          style={{ flex: 0.05, marginHorizontal: moderateScale(8) }}
+          style={styles.dotsIconStyle}
         >
           <Image source={imagePath.dotsIcon} />
         </TouchableOpacity>
@@ -48,13 +46,13 @@ const Card = ({
           resizeMode={"contain"}
         />
         </TouchableOpacity>
-        <Text style={{ color: colors.white, fontSize: textScale(14) }}>
+        <Text style={styles.captionStyle}>
           {caption}
         </Text>
         <Text style={styles.postTime}>{}</Text>
         <View style={styles.postBottomView}>
           <View style={{ flexDirection: "row" }}>
-            <Text style={{ color: colors.white, fontSize: textScale(15) }}>
+            <Text style={styles.commentCountStyle}>
               {strings.COMMENTS} {commentCount}
             </Text>
             <Text style={styles.likesTextStyle}>
@@ -107,6 +105,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginHorizontal: moderateScale(24),
     fontSize: textScale(15),
+    fontFamily:fontFamily.mulishRegular
   },
   shareIcon: {
     width: moderateScale(width - width / 1.07),
@@ -114,6 +113,30 @@ const styles = StyleSheet.create({
     marginRight: moderateScale(10),
     height: moderateScale(height - height / 1.03),
   },
+  userNameText:{ 
+    color: colors.white, 
+    fontSize: textScale(16),
+    fontFamily:fontFamily.mulishSemiBold
+  },
+  placeName:{
+    color: colors.textMediumGray,
+    fontSize: textScale(13),
+    fontFamily:fontFamily.mulishRegular
+  },
+  dotsIconStyle:{ 
+    flex: 0.05, 
+    marginHorizontal: moderateScale(8)
+  },
+  captionStyle:{ 
+    color: colors.white, 
+    fontSize: textScale(14),
+    fontFamily:fontFamily.mulishRegular
+  },
+  commentCountStyle:{ 
+    color: colors.white, 
+    fontSize: textScale(15),
+    fontFamily:fontFamily.mulishRegular
+  }
 });
 
 export default Card;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  KeyboardAvoidingView, Platform, Text, TouchableOpacity, View
+  KeyboardAvoidingView, Platform, Text, TouchableOpacity, View, ActivityIndicator
 } from "react-native";
 import DeviceInfo from 'react-native-device-info';
 import ButtonComp from "../../../Components/ButtonComp";
@@ -23,12 +23,13 @@ import { styles } from "./styles";
 const Login = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState();
   const [state, setState] = useState({
-    phoneNumber: "1234567890",
-    password: "123654",
+    phoneNumber: "",
+    password: "",
   });
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
   const { phoneNumber, password } = state;
+  const [loading, setLoading] = useState(false)
 
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
@@ -57,11 +58,13 @@ const Login = ({ navigation }) => {
       password: password,
       loginType: "admin",
     };
+    setLoading(true)
     actions
       .login(apiData)
       .then((res) => {
         console.log("login api res_+++++", res);
         console.log("apidata", res);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err, "err");
@@ -112,7 +115,7 @@ const Login = ({ navigation }) => {
             style={styles.otpContainer}
           >
             <TouchableOpacity
-              onPress={() => navigation.navigate(navigationStrings.OTP)}
+              onPress={() => navigation.navigate(navigationStrings.OTP, )}
             >
               <Text style={{ color: colors.white, fontFamily:fontFamily.mulishRegular }}>{strings.USE_OTP}</Text>
             </TouchableOpacity>
@@ -133,7 +136,7 @@ const Login = ({ navigation }) => {
         >
           <View style={{ marginBottom: moderateScaleVertical(56) }}>
             <ButtonComp
-              btnText={strings.LOGIN}
+              btnText={loading ? <ActivityIndicator size="large" color={colors.white} /> : strings.LOGIN}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               onPress={handleSubmitBtn}
               btnTextStyle={styles.buttonStyle}

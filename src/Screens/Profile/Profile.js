@@ -13,6 +13,7 @@ import colors from "../../styles/colors";
 import imagePath from "../../constants/imagePath";
 import navigationStrings from "../../navigation/navigationStrings";
 import { useSelector } from "react-redux";
+import fontFamily from "../../styles/fontFamily";
 const Profile = ({ navigation }) => {
   const userData = useSelector((state) => state?.userData?.userData);
   console.log("userData", userData);
@@ -27,7 +28,7 @@ const Profile = ({ navigation }) => {
   return (
     <WrapperContainer>
       <View style={styles.container}>
-        <Text style={{ color: colors.white, fontSize: textScale(16) }}>
+        <Text style={styles.headingStyle}>
           {strings.PROFILE}
         </Text>
 
@@ -74,7 +75,13 @@ const styles = StyleSheet.create({
   menuTextStyle: {
     color: colors.white,
     fontSize: textScale(15),
+    fontFamily:fontFamily.mulishRegular,
     marginLeft: moderateScale(20),
   },
+  headingStyle:{ 
+    color: colors.white, 
+    fontSize: textScale(16),
+    fontFamily:fontFamily.mulishSemiBold
+  }
 });
 export default Profile;

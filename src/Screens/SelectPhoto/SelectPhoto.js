@@ -25,6 +25,8 @@ import imagePath from "../../constants/imagePath";
 import navigationStrings from "../../navigation/navigationStrings";
 import { openCamera } from "../../utils/imagePickerFun";
 import HeaderComp from "../../Components/HeaderComp";
+import fontFamily from "../../styles/fontFamily";
+import actions from "../../redux/actions";
 const SelectPhoto = ({ navigation }) => {
   const [state, setState] = useState();
   const [selectImage, setSelectImage] = useState()
@@ -66,10 +68,31 @@ const SelectPhoto = ({ navigation }) => {
   };
 
   const _goToAddInfo = () => {
-    navigation.navigate(navigationStrings.ADD_INFO, {
-      photo: selectImage,
+    let selectedImg = new FormData();
+    selectedImg.append("image", {
+      uri: selectImage,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      type: 'image/jpeg',
     });
+    actions.imgUpload(selectedImg, { "Content-Type": "multipart/form-data" })
+    .then((res) => {
+      console.log("img upload sucessfully", res);
+      if(!!res){
+        navigation.navigate(navigationStrings.ADD_INFO, {
+          photo: res.data,
+        });
+      }
+      // setSelectedPhoto(res.data)
+      alert(res?.message);
+    })
+    .catch((err) => {
+      console.log(err, "err");
+      alert(err?.message);
+    });
+
+  
   };
+
 
   const _selectImgFun = (element) =>{
     setSelectImage(element.item.node.image.uri)
@@ -178,10 +201,12 @@ const styles = StyleSheet.create({
   galleryHeaderLeftTextStyle: {
     color: colors.white,
     fontSize: textScale(16),
+    fontFamily:fontFamily.mulishSemiBold
   },
   galleryHeaderRightTextStyle: {
     color: colors.white,
     fontSize: textScale(14),
+    fontFamily:fontFamily.mulishRegular
   },
   cameraIconContainer:{
     position:'absolute', 

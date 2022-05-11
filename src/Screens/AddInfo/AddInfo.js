@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  ActivityIndicator
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
@@ -26,17 +27,22 @@ import imagePath from "../../constants/imagePath";
 import { openGallery, openCamera } from "../../utils/imagePickerFun";
 import actions from "../../redux/actions";
 
+
 const AddInfo = ({ navigation, route }) => {
   let photo = route?.params?.photo;
+console.log(photo,"photo")
   const [selectPhotos, setSelectPhotos] = useState([photo]);
   const [state, setState] = useState({
     description: "",
     location: "",
     imageType: 'image/jpeg',
   });
-
+  
   const { description, location, imageType } = state;
+
+  const [loading, setLoading] = useState(false)
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
+
 
   const _selectPhoto = async () => {
     try {
@@ -45,11 +51,33 @@ const AddInfo = ({ navigation, route }) => {
       updateState({
         imageType: res?.mime,
       });
-      setSelectPhotos(selectPhotos.concat(res.path));
+      imageUpload(res.path, res?.mime)
     } catch (error) {
       console.log("error raised", error);
     }
   };
+
+  const imageUpload = (image, type) =>{
+    let selectedImg = new FormData();
+    selectedImg.append("image", {
+      uri: image,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      type: !!type ? type: 'image/jpeg',
+    });
+    actions.imgUpload(selectedImg, { "Content-Type": "multipart/form-data" })
+    .then((res) => {
+      console.log("img upload sucessfully", res.data);
+      if(!!res){
+        setSelectPhotos(selectPhotos.concat(res.data));
+      }
+      // setSelectedPhoto(res.data)
+      alert(res?.message);
+    })
+    .catch((err) => {
+      console.log(err, "err");
+      alert(err?.message);
+    });
+  }
 
   const _openCamera = async () => {
     try {
@@ -58,13 +86,13 @@ const AddInfo = ({ navigation, route }) => {
       updateState({
         imageType: res?.mime,
       });
-      setSelectPhotos(selectPhotos.concat(res.path));
+      imageUpload(res.path, res?.mime)
     } catch (error) {
       console.log("error raised", error);
     }
   };
   const _selectImage = () => {
-    if (selectPhotos.length > 3) {
+    if (selectPhotos.length > 4) {
       return alert("You can't upload max five image");
     }
     Alert.alert("Select photo ", "Select Photo ", [
@@ -96,6 +124,9 @@ const AddInfo = ({ navigation, route }) => {
   };
 
   const _submitPost = async () => {
+
+    setLoading(true)
+    // selectPhotos.push(selectedPhoto)
     console.log(selectPhotos, "selectPhoto >>>>>>");
     let formaData = new FormData();
     formaData.append("description", description);
@@ -105,6 +136,7 @@ const AddInfo = ({ navigation, route }) => {
     formaData.append("type", 1);
     if (selectPhotos?.length) {
       selectPhotos.map((i, inx) => {
+        console.log(i)
         formaData.append("images[]", {
           uri: i,
           name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
@@ -112,11 +144,6 @@ const AddInfo = ({ navigation, route }) => {
         });
       });
     }
-    // formaData.append("image", {
-    //   uri: selectPhotos,
-    //   name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-    //   type: imageType,
-    // });
 
     console.log(formaData, "formaData");
 
@@ -125,6 +152,7 @@ const AddInfo = ({ navigation, route }) => {
       .then((res) => {
         console.log("editProfile api res_+++++", res);
         alert(res?.message);
+        setLoading(false)
         navigation.goBack();
       })
       .catch((err) => {
@@ -142,6 +170,8 @@ const AddInfo = ({ navigation, route }) => {
             onPressBack={() => navigation.goBack()}
           />
           <View style={styles.addImageContainer}>
+            
+          
             {selectPhotos
               ? selectPhotos.map((element, index) => {
                   return (
@@ -194,7 +224,7 @@ const AddInfo = ({ navigation, route }) => {
         >
           <View style={{ marginBottom: moderateScaleVertical(56) }}>
             <ButtonComp
-              btnText={strings.POST}
+              btnText={loading ? <ActivityIndicator size="large" color={colors.white} /> : strings.POST}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={styles.btnStyle}
               onPress={_submitPost}

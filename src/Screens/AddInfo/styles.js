@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "../../styles/colors";
+import fontFamily from "../../styles/fontFamily";
 import {
   height,
   moderateScale,
@@ -49,7 +50,8 @@ export const styles = StyleSheet.create({
   },
   btnStyle:{ 
     color: colors.white, 
-    textTransform: "uppercase" 
+    textTransform: "uppercase",
+    fontFamily:fontFamily.mulishBold
   },
   removeBtnStyle:{ 
     position: "absolute", 

@@ -178,7 +178,7 @@ const EditProfile = ({ navigation }) => {
             <ButtonComp
               btnText={strings.SAVE}
               btnStyle={{ backgroundColor: colors.btnOrange }}
-              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+              btnTextStyle={styles.btnTextStyle}
               onPress={_submitEditProfileData}
             />
           </View>

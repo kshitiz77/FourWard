@@ -33,6 +33,7 @@ const Otp = ({ navigation, route }) => {
           if (res) {
             console.log(res?.data, "res");
             console.log(res?.data?.otp, "otp");
+
            navigation.navigate(navigationStrings.CHANGE_PASSWORD, {
                     data: res.data,
                     key: strings.FORGOT_PASSWORD,
@@ -53,8 +54,8 @@ const Otp = ({ navigation, route }) => {
           <HeaderComp />
           <View style={{ marginTop: moderateScaleVertical(6) }}>
             <Text style={styles.welcomeBackStyle}>
-              {strings.ENTER_VERIFY_CODE_TEXT} +{phoneCode}
-              {phoneNumber}
+              {strings.ENTER_VERIFY_CODE_TEXT} +{apiData.phone_code? apiData.phone_code : phoneCode}
+              {apiData.phone ? apiData.phone :phoneNumber}
             </Text>
             <Text style={styles.welcomeTextStyle}>
               {strings.EDIT_MY_MOBILE_NUMBER}

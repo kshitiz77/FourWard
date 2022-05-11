@@ -16,7 +16,7 @@ const Notification = () => {
   return (
     <WrapperContainer>
       <View style={styles.container}>
-        <Text style={{ color: colors.white, fontSize: textScale(16) }}>
+        <Text style={styles.headingStyle}>
           {strings.NOTIFICATION}
         </Text>
         <View style={{ marginVertical: moderateScaleVertical(16) }}>
@@ -49,10 +49,7 @@ const Notification = () => {
                     </Text>
                   </View>
                   <Text
-                    style={{
-                      color: colors.textDarkGray,
-                      fontSize: textScale(12),
-                    }}
+                    style={styles.timeStyle}
                   >
                     20 min ago
                   </Text>

@@ -7,6 +7,7 @@ import {
 } from "../../../styles/responsiveSize";
 import { StyleSheet } from "react-native";
 import colors from "../../../styles/colors";
+import fontFamily from "../../../styles/fontFamily";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
   forgotPasswordTextStyle: {
     fontSize: textScale(24),
     color: colors.white,
+    fontFamily:fontFamily.mulishSemiBold
   },
   phoneNumberContainer: {
     marginTop: moderateScaleVertical(32),
@@ -30,6 +32,7 @@ export const styles = StyleSheet.create({
   },
   btnTextStyle:{ 
     color: colors.white, 
-    textTransform: "uppercase" 
+    textTransform: "uppercase",
+    fontFamily:fontFamily.mulishBold
   }
 });

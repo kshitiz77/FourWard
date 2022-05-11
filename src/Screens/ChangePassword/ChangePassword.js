@@ -17,6 +17,7 @@ import { CHANGE_PASSWORD } from "../../config/urls";
 import { NavigationContainer } from "@react-navigation/native";
 import navigationStrings from "../../navigation/navigationStrings";
 import actions from "../../redux/actions";
+import fontFamily from "../../styles/fontFamily";
 
 const ChangePassword = ({ navigation, route }) => {
   const userData = useSelector((state) => state?.userData?.userData);
@@ -65,7 +66,7 @@ const ChangePassword = ({ navigation, route }) => {
               rightTextStyle={styles.rightTextStyle}
             />
             <TextInputWithLable
-              placeholder={strings.CURRENT_PASSWORD}
+              placeholder={strings.CONFIRM_PASSWORD}
               value={currentPassword}
               inputStyle={{ marginVertical: moderateScaleVertical(16) }}
               secureTextEntry={isVisible}
@@ -84,7 +85,7 @@ const ChangePassword = ({ navigation, route }) => {
             <ButtonComp
               btnText={strings.SAVE}
               btnStyle={{ backgroundColor: colors.btnOrange }}
-              btnTextStyle={{ color: colors.white, textTransform: "uppercase" }}
+              btnTextStyle={styles.btnStyle}
               onPress={handleChangePassword}
             />
           </View>
@@ -103,6 +104,11 @@ const styles = StyleSheet.create({
   rightTextStyle:{
     color: colors.white,
     marginRight: moderateScale(16),
+  },
+  btnStyle:{ 
+    color: colors.white, 
+    textTransform: "uppercase",
+    fontFamily:fontFamily.mulishBold
   }
 })
 export default ChangePassword;

@@ -4,6 +4,7 @@ import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
+import fontFamily from '../styles/fontFamily';
 import { moderateScale, textScale } from '../styles/responsiveSize';
 
 const HeaderComp = ({
@@ -27,7 +28,7 @@ const HeaderComp = ({
 
         </TouchableOpacity>
         {
-          showTitle ? <Text style={{color:colors.white, fontSize:textScale(16), marginLeft:moderateScale(16)}}>{title}</Text> : null
+          showTitle ? <Text style={styles.titleStyle}>{title}</Text> : null
         }
         </View>
         {
@@ -48,6 +49,12 @@ const styles = StyleSheet.create({
         height: moderateScale(42),
         justifyContent:'space-between'
     },
+    titleStyle:{
+      color:colors.white, 
+      fontSize:textScale(16), 
+      marginLeft:moderateScale(16),
+      fontFamily:fontFamily.mulishSemiBold
+    }
 });
 
 //make this component available to the app
