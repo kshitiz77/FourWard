@@ -45,7 +45,7 @@ const Card = ({
         <Image
           source={{uri:postImage}}
           style={styles.postImage}
-          resizeMode={"contain"}
+          // resizeMode={"contain"}
         />
         </TouchableOpacity>
         <Text style={styles.captionStyle}>
