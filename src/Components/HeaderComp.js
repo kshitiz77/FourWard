@@ -1,7 +1,7 @@
 //import liraries
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View, Text, ActivityIndicator } from 'react-native';
 import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import fontFamily from '../styles/fontFamily';
@@ -13,7 +13,8 @@ const HeaderComp = ({
     title,
     rightIcon,
     showRightIcon,
-    onPress
+    onPress,
+    loading
   }) => {
     const navigation = useNavigation();
   
@@ -32,8 +33,9 @@ const HeaderComp = ({
         }
         </View>
         {
-          showRightIcon ? <TouchableOpacity onPress={onPress}>
-            <Image source={rightIcon}/>
+          showRightIcon ? <TouchableOpacity onPress={onPress}>{loading ? <ActivityIndicator size="large" color={colors.white} /> :
+ <Image source={rightIcon}/>
+          }
           </TouchableOpacity>
           : null
         }

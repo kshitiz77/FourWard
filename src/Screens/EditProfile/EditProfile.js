@@ -52,7 +52,7 @@ const EditProfile = ({ navigation }) => {
     }
   }, [userData]);
 
-  const _selectProfileImage = async () => {
+  const _selectProfileImage = async() => {
     try {
       const res = await openGallery();
       console.log("image res", res);
@@ -63,9 +63,32 @@ const EditProfile = ({ navigation }) => {
     } catch (error) {
       console.log("error raised", error);
     }
+    
   };
 
   const _submitEditProfileData = async () => {
+    if(!!profileImage){
+      let selectedImg = new FormData();
+      selectedImg.append("image", {
+        uri: profileImage,
+        name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+        type: imageType,
+      });
+      actions.imgUpload(selectedImg, { "Content-Type": "multipart/form-data" })
+      .then((res) => {
+        console.log("img upload sucessfully", res);
+        // setSelectedPhoto(res.data)
+        updateState({
+          profileImage: res.data,
+        });
+        alert(res?.message);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        alert(err?.message);
+      });
+    }
+
     let formaData = new FormData();
     formaData.append("first_name", firstName);
     formaData.append("last_name", lastName);

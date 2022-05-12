@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import WrapperContainer from "../../Components/WrapperContainer";
@@ -27,22 +27,20 @@ import imagePath from "../../constants/imagePath";
 import { openGallery, openCamera } from "../../utils/imagePickerFun";
 import actions from "../../redux/actions";
 
-
 const AddInfo = ({ navigation, route }) => {
   let photo = route?.params?.photo;
-console.log(photo,"photo")
+  console.log(photo, "photo");
   const [selectPhotos, setSelectPhotos] = useState([photo]);
   const [state, setState] = useState({
     description: "",
     location: "",
-    imageType: 'image/jpeg',
+    imageType: "image/jpeg",
   });
-  
+
   const { description, location, imageType } = state;
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
-
 
   const _selectPhoto = async () => {
     try {
@@ -51,33 +49,34 @@ console.log(photo,"photo")
       updateState({
         imageType: res?.mime,
       });
-      imageUpload(res.path, res?.mime)
+      imageUpload(res.path, res?.mime);
     } catch (error) {
       console.log("error raised", error);
     }
   };
 
-  const imageUpload = (image, type) =>{
+  const imageUpload = (image, type) => {
     let selectedImg = new FormData();
     selectedImg.append("image", {
       uri: image,
       name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-      type: !!type ? type: 'image/jpeg',
+      type: !!type ? type : "image/jpeg",
     });
-    actions.imgUpload(selectedImg, { "Content-Type": "multipart/form-data" })
-    .then((res) => {
-      console.log("img upload sucessfully", res.data);
-      if(!!res){
-        setSelectPhotos(selectPhotos.concat(res.data));
-      }
-      // setSelectedPhoto(res.data)
-      alert(res?.message);
-    })
-    .catch((err) => {
-      console.log(err, "err");
-      alert(err?.message);
-    });
-  }
+    actions
+      .imgUpload(selectedImg, { "Content-Type": "multipart/form-data" })
+      .then((res) => {
+        console.log("img upload sucessfully", res.data);
+        if (!!res) {
+          setSelectPhotos(selectPhotos.concat(res.data));
+        }
+        // setSelectedPhoto(res.data)
+        alert(res?.message);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        alert(err?.message);
+      });
+  };
 
   const _openCamera = async () => {
     try {
@@ -86,7 +85,7 @@ console.log(photo,"photo")
       updateState({
         imageType: res?.mime,
       });
-      imageUpload(res.path, res?.mime)
+      imageUpload(res.path, res?.mime);
     } catch (error) {
       console.log("error raised", error);
     }
@@ -124,35 +123,38 @@ console.log(photo,"photo")
   };
 
   const _submitPost = async () => {
-
-    setLoading(true)
+    setLoading(true);
     // selectPhotos.push(selectedPhoto)
     console.log(selectPhotos, "selectPhoto >>>>>>");
-    let formaData = new FormData();
-    formaData.append("description", description);
-    formaData.append("location_name", location);
-    formaData.append("latitude", 30.7333);
-    formaData.append("longitude", 76.7794);
-    formaData.append("type", 1);
-    if (selectPhotos?.length) {
-      selectPhotos.map((i, inx) => {
-        console.log(i)
-        formaData.append("images[]", {
-          uri: i,
-          name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-          type: imageType,
-        });
-      });
-    }
+    let formData = new FormData();
+    formData.append("description", description);
+    formData.append("location_name", location);
+    formData.append("latitude", 30.7333);
+    formData.append("longitude", 76.7794);
+    formData.append("type", "quick");
+    // if (selectPhotos?.length) {
+    //   selectPhotos.map((i, inx) => {
+    //     console.log(i)
+    //     formData.append("images[]", {
+    //       uri: i,
+    //       name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+    //       type: imageType,
+    //     });
+    //   });
+    // }
+    selectPhotos.map((item, index) => {
+      console.log(item, "item");
+      formData.append("images[]", item);
+    });
 
-    console.log(formaData, "formaData");
+    console.log(formData, "formData");
 
     actions
-      .postSend(formaData, { "Content-Type": "multipart/form-data" })
+      .postSend(formData, { "Content-Type": "multipart/form-data" })
       .then((res) => {
         console.log("editProfile api res_+++++", res);
         alert(res?.message);
-        setLoading(false)
+        setLoading(false);
         navigation.goBack();
       })
       .catch((err) => {
@@ -170,8 +172,6 @@ console.log(photo,"photo")
             onPressBack={() => navigation.goBack()}
           />
           <View style={styles.addImageContainer}>
-            
-          
             {selectPhotos
               ? selectPhotos.map((element, index) => {
                   return (
@@ -224,7 +224,13 @@ console.log(photo,"photo")
         >
           <View style={{ marginBottom: moderateScaleVertical(56) }}>
             <ButtonComp
-              btnText={loading ? <ActivityIndicator size="large" color={colors.white} /> : strings.POST}
+              btnText={
+                loading ? (
+                  <ActivityIndicator size="large" color={colors.white} />
+                ) : (
+                  strings.POST
+                )
+              }
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={styles.btnStyle}
               onPress={_submitPost}

@@ -8,23 +8,25 @@ import fontFamily from "../styles/fontFamily";
 
 const Card = ({
   userImage,
-  userName,
+  firstName,
+  lastName,
   place,
   postImage,
   caption,
   commentCount,
   likes,
-  onPress
+  onPress,
+  postTime
 }) => {
   return (
     <>
       <View style={styles.header}>
         <View style={{ flex: 0.2 }}>
-          <Image source={userImage} style={styles.userImage} />
+          <Image source={{uri:userImage}}  style={styles.userImage} />
         </View>
         <View style={styles.centerHeaderText}>
           <Text style={styles.userNameText}>
-            {userName}
+            {firstName} {lastName}
           </Text>
           <Text
             style={styles.placeName}
@@ -41,7 +43,7 @@ const Card = ({
       <View style={styles.postContainer}>
         <TouchableOpacity onPress={onPress}>
         <Image
-          source={postImage}
+          source={{uri:postImage}}
           style={styles.postImage}
           resizeMode={"contain"}
         />
@@ -49,7 +51,7 @@ const Card = ({
         <Text style={styles.captionStyle}>
           {caption}
         </Text>
-        <Text style={styles.postTime}>{}</Text>
+        <Text style={styles.postTime}>{postTime}</Text>
         <View style={styles.postBottomView}>
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.commentCountStyle}>
@@ -81,7 +83,6 @@ const styles = StyleSheet.create({
     width: moderateScale(width / 10),
     height: moderateScale(width / 10),
     borderRadius: moderateScale(width / 20),
-    resizeMode: "contain",
     marginHorizontal: moderateScale(8),
   },
   postImage: {

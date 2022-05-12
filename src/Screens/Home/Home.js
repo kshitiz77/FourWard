@@ -24,17 +24,19 @@ const Home = ({ navigation }) => {
   };
 
   const renderItem = (element, index) => {
+    console.log(element.item, "Render Item")
     return (
       <View key={index} style={styles.flatlistContainer}>
         <Card
-          userImage={element.item.userImage}
-          userName={element.item.userName}
-          place={element.item.place}
-          postImage={element.item.postImage}
+          userImage={element.item.user.profile}
+          firstName={element.item.user.first_name}
+          lastName={element.item.user.last_name}
+          place={element.item.location_name}
+          postImage={element.item.images.file[0]}
           caption={element.item.caption}
-          postTime={element.item.postTime}
-          commentCount={element.item.commentCount}
-          likes={element.item.likes}
+          postTime={element.item.time_ago}
+          commentCount={element.item.commets.length}
+          likes={element.item.like_count}
           onPress={() => _postDetails(element.item)}
         />
       </View>
@@ -44,7 +46,7 @@ const Home = ({ navigation }) => {
   useEffect(()=>{
     actions.getPost().then((res)=>{
       console.log(res.data, "getPost")
-      // setPost(res.data)
+      setPost(res.data)
     })
   }, [])
   return (

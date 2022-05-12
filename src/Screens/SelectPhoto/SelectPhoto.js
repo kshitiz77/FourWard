@@ -8,6 +8,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import CameraRoll from "@react-native-community/cameraroll";
@@ -30,6 +31,8 @@ import actions from "../../redux/actions";
 const SelectPhoto = ({ navigation }) => {
   const [state, setState] = useState();
   const [selectImage, setSelectImage] = useState()
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     _getMediaFromGalary();
     console.log(state);
@@ -68,6 +71,7 @@ const SelectPhoto = ({ navigation }) => {
   };
 
   const _goToAddInfo = () => {
+    setLoading(true)
     let selectedImg = new FormData();
     selectedImg.append("image", {
       uri: selectImage,
@@ -78,11 +82,14 @@ const SelectPhoto = ({ navigation }) => {
     .then((res) => {
       console.log("img upload sucessfully", res);
       if(!!res){
+        setLoading(false)
         navigation.navigate(navigationStrings.ADD_INFO, {
           photo: res.data,
         });
+
       }
       // setSelectedPhoto(res.data)
+
       alert(res?.message);
     })
     .catch((err) => {
@@ -141,6 +148,7 @@ const SelectPhoto = ({ navigation }) => {
             rightIcon={imagePath.checkIcon}
             showRightIcon={true}
             onPress={_goToAddInfo}
+            loading={loading}
           />
       </View>
       <View style={{flex:1}}>
