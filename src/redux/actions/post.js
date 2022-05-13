@@ -11,6 +11,16 @@ export const imgUpload = (data, header = {}) => {
   return apiPost(IMG_UPLOAD, data, header);
 };
 
-export const getPost = (data) => {
-  return apiGet(GET_POST, data);
+export const getPost = (query="") => {
+  return apiGet(GET_POST+query);
+  // return new Promise((resolve, reject) => {
+  //   apiGet(GET_POST, data)
+  //     .then((res) => {
+  //       saveUserData(res.data);
+  //       resolve(res);
+  //     })
+  //     .catch((error) => {
+  //       reject(error);
+  //     });
+  // });
 };

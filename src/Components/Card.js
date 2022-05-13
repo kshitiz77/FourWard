@@ -7,31 +7,24 @@ import strings from "../constants/lang";
 import fontFamily from "../styles/fontFamily";
 
 const Card = ({
-  userImage,
-  firstName,
-  lastName,
-  place,
-  postImage,
-  caption,
-  commentCount,
-  likes,
   onPress,
-  postTime
+  data ={}
 }) => {
+  console.log(data.item.images.file[0], "post image")
   return (
     <>
       <View style={styles.header}>
         <View style={{ flex: 0.2 }}>
-          <Image source={{uri:userImage}}  style={styles.userImage} />
+          <Image source={{uri:data.item.user.profile}}  style={styles.userImage} />
         </View>
         <View style={styles.centerHeaderText}>
           <Text style={styles.userNameText}>
-            {firstName} {lastName}
+            {data.item.user.first_name} {data.item.user.last_name}
           </Text>
           <Text
             style={styles.placeName}
           >
-            {place}
+            {data.item.location_name}
           </Text>
         </View>
         <TouchableOpacity
@@ -43,22 +36,22 @@ const Card = ({
       <View style={styles.postContainer}>
         <TouchableOpacity onPress={onPress}>
         <Image
-          source={{uri:postImage}}
+          source={{uri:data.item.images.file[0]}}
           style={styles.postImage}
           // resizeMode={"contain"}
         />
         </TouchableOpacity>
         <Text style={styles.captionStyle}>
-          {caption}
+          {data.item.description}
         </Text>
-        <Text style={styles.postTime}>{postTime}</Text>
+        <Text style={styles.postTime}>{data.item.time_ago}</Text>
         <View style={styles.postBottomView}>
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.commentCountStyle}>
-              {strings.COMMENTS} {commentCount}
+              {strings.COMMENTS} {data.item.commets.length}
             </Text>
             <Text style={styles.likesTextStyle}>
-              {strings.LIKES} {likes}
+              {strings.LIKES} {data.item.like_count }
             </Text>
           </View>
           <TouchableOpacity>

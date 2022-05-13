@@ -73,7 +73,7 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={loading} withModal={loading}>
       <View style={styles.container}>
         <View>
           <HeaderComp />
@@ -136,7 +136,7 @@ const Login = ({ navigation }) => {
         >
           <View style={{ marginBottom: moderateScaleVertical(56) }}>
             <ButtonComp
-              btnText={loading ? <ActivityIndicator size="large" color={colors.white} /> : strings.LOGIN}
+              btnText={strings.LOGIN}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               onPress={handleSubmitBtn}
               btnTextStyle={styles.buttonStyle}

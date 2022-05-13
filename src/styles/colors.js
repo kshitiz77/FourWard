@@ -11,5 +11,6 @@ export default {
   textDarkGray: '#B8B8B8',
   textMediumGray: '#AEAEAE',
   textDarkGray_2:'#BFBFBF',
-  darkRed: '#F43738'
+  darkRed: '#F43738',
+  whiteOpacity22: 'rgba(255,255,255,0.22)',
 };

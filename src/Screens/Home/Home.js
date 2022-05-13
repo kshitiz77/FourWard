@@ -17,40 +17,35 @@ import navigationStrings from "../../navigation/navigationStrings";
 import actions from "../../redux/actions";
 
 const Home = ({ navigation }) => {
-  const [post, setPost] = useState()
+  const [post, setPost] = useState();
+  const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
+
   const _postDetails = (item) => {
     console.log(item);
     navigation.navigate(navigationStrings.POST_DETAILS, { postData: item });
   };
 
   const renderItem = (element, index) => {
-    console.log(element.item, "Render Item")
+    console.log(element.item, "Render Item");
     return (
       <View key={index} style={styles.flatlistContainer}>
-        <Card
-          userImage={element.item.user.profile}
-          firstName={element.item.user.first_name}
-          lastName={element.item.user.last_name}
-          place={element.item.location_name}
-          postImage={element.item.images.file[0]}
-          caption={element.item.caption}
-          postTime={element.item.time_ago}
-          commentCount={element.item.commets.length}
-          likes={element.item.like_count}
-          onPress={() => _postDetails(element.item)}
-        />
+        <Card data={element} onPress={() => _postDetails(element.item)} />
       </View>
     );
   };
 
-  useEffect(()=>{
-    actions.getPost().then((res)=>{
-      console.log(res.data, "getPost")
-      setPost(res.data)
+  useEffect(() => {
+    const apiData = `?skip=${count}`;
+    setLoading(!loading);
+    actions.getPost(apiData).then((res) => {
+        console.log(res.data, "getPost");
+        setLoading(loading);
+        setPost(res.data);
     })
-  }, [])
+  }, [count]);
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={loading} withModal={loading}>
       <View style={{ marginHorizontal: moderateScale(24) }}>
         <View style={styles.headerStyle}>
           <Image source={imagePath.homeLogo} />
@@ -65,6 +60,13 @@ const Home = ({ navigation }) => {
             showsVerticalScrollIndicator={false}
             renderItem={(element, index) => renderItem(element, index)}
             keyExtractor={(item) => item.id}
+            onEndReached={({ distanceFromEnd }) => {
+              if (count >= 0) {
+                console.log("count>>>>>>>", count);
+                setCount(count + 1);
+              }
+            }}
+            // onRefresh=
           />
         </View>
       </View>

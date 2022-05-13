@@ -38,6 +38,7 @@ const EditProfile = ({ navigation }) => {
   const { email, phone, firstName, lastName, profileImage, imageType } = state;
   const [countryCode, setCountryCode] = useState("91");
   const [countryFlag, setCountryFlag] = useState("IN");
+  const [loading, setLoading] = useState(false)
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
   useEffect(() => {
@@ -67,6 +68,7 @@ const EditProfile = ({ navigation }) => {
   };
 
   const _submitEditProfileData = async () => {
+    setLoading(true)
     if(!!profileImage){
       let selectedImg = new FormData();
       selectedImg.append("image", {
@@ -78,6 +80,7 @@ const EditProfile = ({ navigation }) => {
       .then((res) => {
         console.log("img upload sucessfully", res);
         // setSelectedPhoto(res.data)
+        setLoading(false)
         updateState({
           profileImage: res.data,
         });
@@ -115,7 +118,7 @@ const EditProfile = ({ navigation }) => {
   console.log(profileImage, "profileImage");
 
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={loading} withModal={loading}>
       <View style={styles.container}>
         <View>
           <HeaderComp

@@ -69,7 +69,6 @@ const AddInfo = ({ navigation, route }) => {
         if (!!res) {
           setSelectPhotos(selectPhotos.concat(res.data));
         }
-        // setSelectedPhoto(res.data)
         alert(res?.message);
       })
       .catch((err) => {
@@ -124,7 +123,6 @@ const AddInfo = ({ navigation, route }) => {
 
   const _submitPost = async () => {
     setLoading(true);
-    // selectPhotos.push(selectedPhoto)
     console.log(selectPhotos, "selectPhoto >>>>>>");
     let formData = new FormData();
     formData.append("description", description);
@@ -132,16 +130,6 @@ const AddInfo = ({ navigation, route }) => {
     formData.append("latitude", 30.7333);
     formData.append("longitude", 76.7794);
     formData.append("type", "quick");
-    // if (selectPhotos?.length) {
-    //   selectPhotos.map((i, inx) => {
-    //     console.log(i)
-    //     formData.append("images[]", {
-    //       uri: i,
-    //       name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-    //       type: imageType,
-    //     });
-    //   });
-    // }
     selectPhotos.map((item, index) => {
       console.log(item, "item");
       formData.append("images[]", item);
@@ -163,7 +151,7 @@ const AddInfo = ({ navigation, route }) => {
       });
   };
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={loading} withModal={loading}>
       <View style={styles.container}>
         <View>
           <HeaderComp
@@ -224,13 +212,7 @@ const AddInfo = ({ navigation, route }) => {
         >
           <View style={{ marginBottom: moderateScaleVertical(56) }}>
             <ButtonComp
-              btnText={
-                loading ? (
-                  <ActivityIndicator size="large" color={colors.white} />
-                ) : (
-                  strings.POST
-                )
-              }
+              btnText={strings.POST}
               btnStyle={{ backgroundColor: colors.btnOrange }}
               btnTextStyle={styles.btnStyle}
               onPress={_submitPost}

@@ -138,7 +138,7 @@ const SelectPhoto = ({ navigation }) => {
   };
 
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={loading} withModal={loading}>
       {/* <ScrollView> */}
       <View style={{marginHorizontal:moderateScale(24)}}>
       <HeaderComp
@@ -148,7 +148,6 @@ const SelectPhoto = ({ navigation }) => {
             rightIcon={imagePath.checkIcon}
             showRightIcon={true}
             onPress={_goToAddInfo}
-            loading={loading}
           />
       </View>
       <View style={{flex:1}}>

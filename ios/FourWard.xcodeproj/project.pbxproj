@@ -11,15 +11,15 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		28EB0EDADEED45CEA18BFD7C /* Mulish-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABF81539044F42F19F68E59D /* Mulish-Medium.otf */; };
+		4B6275D98F9842289C8786FA /* Mulish-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */; };
+		5DF203A074C24033BC80535C /* Mulish-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AFA15B69333C40E6AFF302C8 /* Mulish-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */; };
 		BEA3FCEC7699DDF11E13A437 /* libPods-FourWard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D10AD6BE9C84087EE71CB78 /* libPods-FourWard.a */; };
 		C9A8CD678E31D1D434A95364 /* libPods-FourWard-FourWardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F058B40B537D1AB1A7D04AE2 /* libPods-FourWard-FourWardTests.a */; };
 		F8430F6C281F9F8E00A104B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8430F6B281F9F8E00A104B3 /* GoogleService-Info.plist */; };
 		F8D9A9A52825206B0053A912 /* react-native-splash-screen in Resources */ = {isa = PBXBuildFile; fileRef = F8D9A9A42825206B0053A912 /* react-native-splash-screen */; };
-		4B6275D98F9842289C8786FA /* Mulish-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */; };
-		28EB0EDADEED45CEA18BFD7C /* Mulish-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABF81539044F42F19F68E59D /* Mulish-Medium.otf */; };
-		5DF203A074C24033BC80535C /* Mulish-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */; };
-		AFA15B69333C40E6AFF302C8 /* Mulish-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,17 +45,17 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FourWard/main.m; sourceTree = "<group>"; };
 		24D3FB7D4549C4C5A379F875 /* Pods-FourWard-FourWardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourWard-FourWardTests.release.xcconfig"; path = "Target Support Files/Pods-FourWard-FourWardTests/Pods-FourWard-FourWardTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D10AD6BE9C84087EE71CB78 /* libPods-FourWard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FourWard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Bold.otf"; path = "../src/assets/fonts/Mulish-Bold.otf"; sourceTree = "<group>"; };
 		6FEC4D2A0847F92AE1DA796E /* Pods-FourWard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourWard.debug.xcconfig"; path = "Target Support Files/Pods-FourWard/Pods-FourWard.debug.xcconfig"; sourceTree = "<group>"; };
+		7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Regular.otf"; path = "../src/assets/fonts/Mulish-Regular.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FourWard/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABF81539044F42F19F68E59D /* Mulish-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-Medium.otf"; path = "../src/assets/fonts/Mulish-Medium.otf"; sourceTree = "<group>"; };
+		C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-SemiBold.otf"; path = "../src/assets/fonts/Mulish-SemiBold.otf"; sourceTree = "<group>"; };
 		D7A2691CED34275B57C16C1A /* Pods-FourWard-FourWardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourWard-FourWardTests.debug.xcconfig"; path = "Target Support Files/Pods-FourWard-FourWardTests/Pods-FourWard-FourWardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F058B40B537D1AB1A7D04AE2 /* libPods-FourWard-FourWardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FourWard-FourWardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8430F6B281F9F8E00A104B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D9A9A42825206B0053A912 /* react-native-splash-screen */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "react-native-splash-screen"; path = "../node_modules/react-native-splash-screen"; sourceTree = "<group>"; };
-		6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */ = {isa = PBXFileReference; name = "Mulish-Bold.otf"; path = "../src/assets/fonts/Mulish-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		ABF81539044F42F19F68E59D /* Mulish-Medium.otf */ = {isa = PBXFileReference; name = "Mulish-Medium.otf"; path = "../src/assets/fonts/Mulish-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7E661FA82A584C74B5E78CB0 /* Mulish-Regular.otf */ = {isa = PBXFileReference; name = "Mulish-Regular.otf"; path = "../src/assets/fonts/Mulish-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */ = {isa = PBXFileReference; name = "Mulish-SemiBold.otf"; path = "../src/assets/fonts/Mulish-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +164,7 @@
 			sourceTree = "<group>";
 		};
 		C87F6A1B89FD442EAC5D105F /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				6DA57B62C77140499F3C22A9 /* Mulish-Bold.otf */,
 				ABF81539044F42F19F68E59D /* Mulish-Medium.otf */,
@@ -172,8 +172,8 @@
 				C046EE4339C54DDFA76A796D /* Mulish-SemiBold.otf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
