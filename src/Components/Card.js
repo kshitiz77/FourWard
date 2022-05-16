@@ -11,12 +11,16 @@ const Card = ({
   data ={},
   _likesOnPost
 }) => {
-  console.log(data?.item?.images?.file[0], "post image")
+  // console.log(data?.item?.images?.file[0], "post image")
   return (
     <>
       <View style={styles.header}>
         <View style={{ flex: 0.2 }}>
+          {data?.item?.user?.profile && data?.item?.user?.profile.length  ?
+
           <Image source={{uri:data?.item?.user?.profile}}  style={styles.userImage} />
+          :null
+          }
         </View>
         <View style={styles.centerHeaderText}>
           <Text style={styles.userNameText}>
@@ -41,11 +45,11 @@ const Card = ({
           style={styles.postImage}
           resizeMode={'contain'}
         /> */}
-        {data?.item?.images?.file &&
+        {data?.item?.images?.file && data?.item?.images?.length != 0 &&
         isArray(data?.item?.images?.file) &&
         data?.item?.images?.file.length
           ? data?.item?.images?.file.map((i, inx) => {
-              if (i != '' && i != null) {
+              if (i != '' && i != null && i != {}) {
                 return (
                   <Image
                     source={{uri: i}}
