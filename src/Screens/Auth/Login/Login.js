@@ -69,6 +69,7 @@ const Login = ({ navigation }) => {
       .catch((err) => {
         console.log(err, "err");
         showError("Enter correct credential")
+        setLoading(false)
       });
   };
 

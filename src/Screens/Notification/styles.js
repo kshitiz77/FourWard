@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
     container: {
       marginLeft: moderateScale(24),
       marginVertical: moderateScaleVertical(24),
+      marginBottom:moderateScaleVertical(80)
+      
     },
     notificationContainer: {
       flexDirection: "row",

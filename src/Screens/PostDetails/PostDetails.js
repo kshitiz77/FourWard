@@ -22,30 +22,20 @@ import colors from "../../styles/colors";
 import ButtonComp from "../../Components/ButtonComp";
 const PostDetails = ({ route, navigation }) => {
   const params = route?.params.postData;
-  console.log(params?.userName);
-  const {
-    userName,
-    place,
-    caption,
-    commentCount,
-    likes,
-    postTime,
-    postImage,
-    userImage,
-  } = params;
+  console.log(params, 'params');
 
   return (
     <ImageBackground
-      source={postImage}
+      source={{uri:`${params.images.file[0]}`}}
       style={{ height: height, width: width }}
     >
       <View style={{ flex: 1 }}>
         <View style={styles.container}>
           <View style={{ flexDirection: "row" }}>
-            <Image source={userImage} style={styles.userImage} />
+            <Image source={{uri:`${params.user.profile}`}} style={styles.userImage} />
             <View style={{ flex: 0.9, marginLeft: moderateScale(10) }}>
-              <Text style={{color:colors.white, fontSize:textScale(16)}}>{userName}</Text>
-              <Text style={{color:colors.white, fontSize:textScale(13)}}>{place}</Text>
+              <Text style={{color:colors.white, fontSize:textScale(16)}}>{params.user.first_name}</Text>
+              <Text style={{color:colors.white, fontSize:textScale(13)}}>{params.location_name}</Text>
             </View>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -62,7 +52,7 @@ const PostDetails = ({ route, navigation }) => {
           }}
         >
           <Text style={{ fontSize: textScale(13), color: colors.white }}>
-            {caption}
+            {params.description}
           </Text>
           <Text
             style={{
@@ -70,7 +60,7 @@ const PostDetails = ({ route, navigation }) => {
               paddingTop: moderateScaleVertical(10),
             }}
           >
-            {postTime}
+            {params.time_ago}
           </Text>
         </View>
         <View style={{ paddingBottom: moderateScaleVertical(50) }}>

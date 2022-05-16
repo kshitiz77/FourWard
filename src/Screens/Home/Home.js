@@ -20,9 +20,10 @@ const Home = ({ navigation }) => {
   const [post, setPost] = useState();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
+  const [refresh, setRefresh] = useState(false) 
 
   const _postDetails = (item) => {
-    console.log(item);
+    console.log(item, "item");
     navigation.navigate(navigationStrings.POST_DETAILS, { postData: item });
   };
 
@@ -44,6 +45,17 @@ const Home = ({ navigation }) => {
         setPost(res.data);
     })
   }, [count]);
+
+  const fetchData = () =>{
+
+    setCount(count-8);
+    setRefresh(false)
+  }
+  const onRefresh = () =>{
+    setRefresh(true);
+    fetchData()
+    console.log(count, 'count')
+  }
   return (
     <WrapperContainer isLoading={loading} withModal={loading}>
       <View style={{ marginHorizontal: moderateScale(24) }}>
@@ -55,18 +67,18 @@ const Home = ({ navigation }) => {
           <FlatList
             data={post}
             contentContainerStyle={{
-              paddingBottom: moderateScaleVertical(187),
+              paddingBottom: moderateScaleVertical(196),
             }}
             showsVerticalScrollIndicator={false}
             renderItem={(element, index) => renderItem(element, index)}
             keyExtractor={(item) => item.id}
+            onEndReachedThreshold={0.1}
             onEndReached={({ distanceFromEnd }) => {
-              if (count >= 0) {
                 console.log("count>>>>>>>", count);
-                setCount(count + 1);
-              }
+                setCount(count + 8);
             }}
-            // onRefresh=
+            refreshing={refresh}
+            onRefresh={onRefresh}
           />
         </View>
       </View>

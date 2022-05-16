@@ -10,12 +10,12 @@ const Card = ({
   onPress,
   data ={}
 }) => {
-  console.log(data.item.images.file[0], "post image")
+  console.log(`${data.item.images.file[0]}`, "post image")
   return (
     <>
       <View style={styles.header}>
         <View style={{ flex: 0.2 }}>
-          <Image source={{uri:data.item.user.profile}}  style={styles.userImage} />
+          <Image source={{uri:`${data.item.user.profile}`}}  style={styles.userImage} />
         </View>
         <View style={styles.centerHeaderText}>
           <Text style={styles.userNameText}>
@@ -36,9 +36,9 @@ const Card = ({
       <View style={styles.postContainer}>
         <TouchableOpacity onPress={onPress}>
         <Image
-          source={{uri:data.item.images.file[0]}}
+          source={{uri:`${data.item.images.file[0]}`}}
           style={styles.postImage}
-          // resizeMode={"contain"}
+          resizeMode={'contain'}
         />
         </TouchableOpacity>
         <Text style={styles.captionStyle}>
