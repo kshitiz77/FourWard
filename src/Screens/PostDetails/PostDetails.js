@@ -22,11 +22,12 @@ import colors from "../../styles/colors";
 import ButtonComp from "../../Components/ButtonComp";
 const PostDetails = ({ route, navigation }) => {
   const params = route?.params.postData;
+  const postImage = route?.params.postImage
   console.log(params, 'params');
 
   return (
     <ImageBackground
-      source={{uri:`${params.images.file[0]}`}}
+      source={{uri:`${postImage}`}}
       style={{ height: height, width: width }}
     >
       <View style={{ flex: 1 }}>

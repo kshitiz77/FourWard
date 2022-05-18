@@ -85,5 +85,6 @@ export default{
     VIEW_MAP:'View map',
     SELECT_PHOTO:'Select photo',
     GALLERY:'Gallery',
-    RECENTS:'Recents'
+    RECENTS:'Recents',
+    ADD_COMMENT:"Add comment"
 }
